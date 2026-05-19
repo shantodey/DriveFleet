@@ -1,6 +1,7 @@
 import Image from "next/image";
 import heroimg from"@/assets/hero_background.jpg"
 import Link from "next/link";
+import { GrLinkNext } from "react-icons/gr";
 const Hero = () => {
   return (
     <section className="relative h-[92vh] w-full overflow-hidden">
@@ -25,12 +26,10 @@ const Hero = () => {
               className="inline-flex items-center gap-2 rounded-xl bg-primary px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-primary/30 transition-all hover:brightness-110 hover:shadow-primary/50"
             >
               Explore Cars
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <GrLinkNext/>
             </Link>
             <Link
-              href="/add-car"
+              href={'/explore-cars'}
               className="inline-flex items-center gap-2 rounded-xl border border-white/30 bg-white/10 px-7 py-3.5 text-sm font-bold text-white backdrop-blur-sm transition-all hover:bg-white/20"
             >
               List Your Car

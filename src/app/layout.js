@@ -3,6 +3,7 @@ import "./globals.css";
 
 import NavbarSection from "./component/Navber";
 import Navber from "./component/Navber";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
       <body className="min-h-full flex flex-col">
         <Navber/>
         {children}
+         <Toaster />
         </body>
     </html>
   );

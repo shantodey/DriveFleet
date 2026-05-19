@@ -8,11 +8,9 @@ const ExploreCarsPage = async () => {
             cache: "no-store",
         }
     );
-
     if (!res.ok) {
         throw new Error(`Failed: ${res.status}`);
     }
-
     const availableCars= await res.json();
     console.log(availableCars);
     
