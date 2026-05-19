@@ -18,7 +18,7 @@ const Navber = () => {
           <li><Link href="/" className="text-white text-sm font-medium  hover:text-foreground no-underline">Home</Link></li>
           <li><Link href={"/explore-cars" }className="text-white  text-sm font-medium  hover:text-foreground no-underline">Explore Cars</Link></li>
           <li><Link href={'/addcar'} className="text-white text-sm font-medium  hover:text-foreground no-underline">Add Car</Link></li>
-          <li><Link href="/bookings" className="text-white text-sm font-medium  hover:text-foreground no-underline">My Bookings</Link></li>
+          <li><Link href={"/mybookings"} className="text-white text-sm font-medium  hover:text-foreground no-underline">My Bookings</Link></li>
         </ul>
         <div className="flex items-center gap-3">
           <Button color="primary" size="sm" radius="lg">

@@ -1,23 +1,14 @@
 "use client";
 
-import {
-    FieldError,
-    Input,
-    Label,
-    TextField,
-    Select,
-    ListBox,
-    TextArea,
-    Button,
-    Switch,
-} from "@heroui/react";
+import {FieldError,Input,Label,TextField,Select,ListBox,TextArea,Button,Switch,} from "@heroui/react";
+import { preconnect } from "react-dom";
 
 const AddCarPage = () => {
     const onSubmit = async (e) => {
         e.preventDefault()
         const formData = new FormData(e.currentTarget)
         const addCar = Object.fromEntries(formData.entries())
-        const res=await fetch(`http://localhost:5000/cars`,{
+        const res=await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}cars`,{
             method: "POST",
             headers:{
                 'content-type':'application/json'
@@ -25,7 +16,7 @@ const AddCarPage = () => {
             body: JSON.stringify(addCar)
         })
         const data= await res.json()
-        console.log(data);
+  
         
     }
     return (
