@@ -78,7 +78,7 @@ const ViewCarsPage = async ({ params }) => {
                         </div>
 
                         {car.availabilityStatus === 'Available' ? (
-                            <BookCarCard/>
+                            <BookCarCard car={car}/>
                         ) : (
                             <button  disabled
                                 className="w-full rounded-2xl bg-gray-800 px-6 py-4 text-sm font-bold text-gray-500 cursor-not-allowed" >

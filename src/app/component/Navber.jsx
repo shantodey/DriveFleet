@@ -14,7 +14,7 @@ const Navber = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = authClient.useSession()
   const user = session?.user;
-  console.log(user);
+  // console.log(user);
 
 
   const handleSingOut = async () => {
@@ -47,8 +47,8 @@ const Navber = () => {
                 <Dropdown.Trigger className="rounded-full cursor-pointer">
                   <Avatar>
                     <Avatar.Image
-                      alt="Junior Garcia"
-                      src={''}
+                      alt={user?.name}
+                      src={user?.image}
                     />
                     <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
                   </Avatar>
