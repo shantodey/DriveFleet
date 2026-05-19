@@ -8,19 +8,19 @@ import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 
 const LoginPage = () => {
-  const onLogIn = async(e) => {
+  const onLogIn = async (e) => {
     e.preventDefault()
     const formData = new FormData(e.currentTarget);
     const user = Object.fromEntries(formData.entries());
 
-    
+
     const { data, error } = await authClient.signIn.email({
       email: user.email,
       password: user.password,
-      
+
     });
     console.log(data);
-    
+
     if (data) {
       redirect('/')
     }
@@ -28,7 +28,11 @@ const LoginPage = () => {
       toast.error(error.message)
     }
   };
- 
+  const signIn = async () => {
+    const data = await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   return (
     <div className="container mx-auto min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 items-center min-h-screen">
@@ -87,7 +91,7 @@ const LoginPage = () => {
                 <div className="h-px flex-1 bg-divider" />
               </div>
 
-              <Button type="button" variant="bordered" size="lg" radius="lg" className="w-full font-bold">
+              <Button onClick={signIn} type="button" variant="bordered" size="lg" radius="lg" className="w-full font-bold">
                 <FcGoogle />Google Login
               </Button>
 

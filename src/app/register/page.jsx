@@ -34,12 +34,12 @@ const RegisterPage = () => {
         
 
     };
-    // const authClient = createAuthClient();
-    // const signIn = async () => {
-    //     const data = await authClient.signIn.social({
-    //         provider: "google",
-    //     });
-    // };
+    const authClient = createAuthClient();
+    const signIn = async () => {
+        const data = await authClient.signIn.social({
+            provider: "google",
+        });
+    };
     return (
         <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
             <div className="text-center mb-8">
@@ -120,7 +120,7 @@ const RegisterPage = () => {
                         <div className="grow border-t border-gray-200"></div>
                     </div>
 
-                    <Button  variant="bordered" className="w-full bg-white border border-gray-200 py-2.5 text-gray-700 font-medium hover:bg-gray-50 flex items-center justify-center gap-2 rounded-none">
+                    <Button onClick={signIn} variant="bordered" className="w-full bg-white border border-gray-200 py-2.5 text-gray-700 font-medium hover:bg-gray-50 flex items-center justify-center gap-2 rounded-none">
                         <FcGoogle/>
                         Sign Up With Google
                     </Button>
