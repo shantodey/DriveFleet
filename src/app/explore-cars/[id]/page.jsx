@@ -12,7 +12,7 @@ const ViewCarsPage = async ({ params }) => {
         cache: 'no-store'
     });
     const car = await res.json();
-    const {carName,imageUrl,carType,description,seatCapacity}=car
+    const { carName, imageUrl, carType, description, seatCapacity } = car
     return (
         <section className="mx-auto container px-6 md:px-12 py-12 min-h-screen">
 
@@ -30,9 +30,8 @@ const ViewCarsPage = async ({ params }) => {
                     <div className="relative h-87 sm:h-112 md:h-130 w-full overflow-hidden rounded-3xl bg-gray-50 shadow-sm">
                         <Image src={imageUrl} alt={carName} fill priority sizes="(max-width: 1024px) 100vw, 60vw"
                             className="object-cover object-center" />
-                        <span className={`absolute left-6 top-6 rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white shadow-md ${
-                            car.availabilityStatus === 'Available' ? 'bg-emerald-500' : 'bg-red-500'
-                        }`}>
+                        <span className={`absolute left-6 top-6 rounded-full px-4 py-1.5 text-xs font-black uppercase tracking-wider text-white shadow-md ${car.availabilityStatus === 'Available' ? 'bg-emerald-500' : 'bg-red-500'
+                            }`}>
                             {car.availabilityStatus}
                         </span>
                     </div>
@@ -48,7 +47,7 @@ const ViewCarsPage = async ({ params }) => {
                     <div className="grid grid-cols-2 gap-4 border-y border-gray-100 py-6">
                         <div className="flex items-center gap-3 bg-gray-50 p-3.5 rounded-2xl">
                             <div className="text-gray-400">
-                                <LuUsers/>
+                                <LuUsers />
                             </div>
                             <div>
                                 <span className="text-xs text-gray-400 block font-medium">Capacity</span>
@@ -58,7 +57,7 @@ const ViewCarsPage = async ({ params }) => {
 
                         <div className="flex items-center gap-3 bg-gray-50 p-3.5 rounded-2xl">
                             <div className="text-gray-400">
-                               <GrMapLocation/>
+                                <GrMapLocation />
                             </div>
                             <div>
                                 <span className="text-xs text-gray-400 block font-medium">Location</span>
@@ -67,7 +66,7 @@ const ViewCarsPage = async ({ params }) => {
                         </div>
                     </div>
 
-                    {/* Price & Action Box */}
+
                     <div className="bg-gray-950 text-white p-6 rounded-3xl shadow-xl space-y-6">
                         <div className="flex items-baseline justify-between">
                             <span className="text-sm font-semibold text-gray-400">Daily Rental Rate</span>
@@ -78,14 +77,14 @@ const ViewCarsPage = async ({ params }) => {
                         </div>
 
                         {car.availabilityStatus === 'Available' ? (
-                            <BookCarCard car={car}/>
+                            <BookCarCard car={car} />
                         ) : (
-                            <button  disabled
+                            <button disabled
                                 className="w-full rounded-2xl bg-gray-800 px-6 py-4 text-sm font-bold text-gray-500 cursor-not-allowed" >
                                 Currently Unavailable
                             </button>
                         )}
-                        
+
                         <p className="text-center text-[11px] text-gray-500 font-medium">
                             Secure checkout protected by JWT & instant host confirmation.
                         </p>

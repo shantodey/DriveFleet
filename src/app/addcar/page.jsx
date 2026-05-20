@@ -3,6 +3,9 @@
 import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button } from "@heroui/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { redirect } from "next/navigation";
+
+
 
 const AddCarPage = () => {
   const [isAvailable, setIsAvailable] = useState(true);
@@ -11,7 +14,6 @@ const AddCarPage = () => {
     const formData = new FormData(e.currentTarget);
     const addCar = Object.fromEntries(formData.entries());
     
-    // Fix availabilityStatus — read from state, not FormData
     addCar.availabilityStatus = isAvailable ? "Available" : "Unavailable";
     
     console.log("Final Form Data:", addCar);
@@ -27,6 +29,7 @@ const AddCarPage = () => {
     const data = await res.json();
     if (res.ok) {
         toast.success(data.message || 'Success');
+        redirect('/')
     } else {
         toast.error(data.message || 'Error');
     }

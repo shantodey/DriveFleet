@@ -11,6 +11,7 @@ import { MdOutlinePassword } from "react-icons/md";
 import { FcGoogle } from "react-icons/fc";
 import { authClient } from "@/lib/auth-client";
 import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
     const onSingIn = async (e) => {
@@ -28,11 +29,8 @@ const RegisterPage = () => {
             redirect('/')
         }
         if (error) {
-            alert(error.message)
+            toast.error(error.message)
         }
-        console.log(data,error);
-        
-
     };
     const authClient = createAuthClient();
     const signIn = async () => {

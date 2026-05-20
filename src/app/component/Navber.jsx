@@ -14,7 +14,6 @@ const Navber = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = authClient.useSession()
   const user = session?.user;
-  // console.log(user);
 
 
   const handleSingOut = async () => {
@@ -40,7 +39,7 @@ const Navber = () => {
         </ul>
 
 
-        <div className="flex items-center gap-3 order-3 md:order-none">
+        <div className="flex items-center gap-3 order-3 md:order-0">
           {user ?
             <>
               <Dropdown>
@@ -105,12 +104,8 @@ const Navber = () => {
                 <Link href={'/login'}><Button color="primary" size="sm" radius="lg"> Login </Button></Link>
                 <Link href={'/register'}><Button color="primary" size="sm" radius="lg"> Register </Button></Link>
               </div>
-
-            </>}
-
-
-
-
+            </>
+          }
         </div>
       </div>
 
