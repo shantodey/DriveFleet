@@ -13,7 +13,6 @@ const AddCarPage = () => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const addCar = Object.fromEntries(formData.entries());
-    
     addCar.availabilityStatus = isAvailable ? "Available" : "Unavailable";
     
     console.log("Final Form Data:", addCar);

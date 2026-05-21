@@ -5,11 +5,20 @@ import { GoPeople } from 'react-icons/go';
 import { GrMapLocation } from 'react-icons/gr';
 import { LuUsers } from 'react-icons/lu';
 import BookCarCard from '@/app/component/BookCarCard';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 const ViewCarsPage = async ({ params }) => {
     const { id } = await params;
+    const { token } = await auth.api.getToken({
+        headers: await headers()
+    })
+    console.log(token);
+    
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars/${id}`, {
-        cache: 'no-store'
+        headers: {
+            authorization: `Bearer ${token}`
+        }
     });
     const car = await res.json();
     const { carName, imageUrl, carType, description, seatCapacity } = car

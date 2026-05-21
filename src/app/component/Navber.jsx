@@ -14,7 +14,7 @@ const Navber = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = authClient.useSession()
   const user = session?.user;
-
+  
 
   const handleSingOut = async () => {
     await authClient.signOut();
@@ -28,7 +28,7 @@ const Navber = () => {
         </button>
 
         <Link href="/" className="text-lg font-bold text-foreground no-underline order-2 md:order-none absolute left-1/2 -translate-x-1/2 md:relative md:left-0 md:translate-x-0">
-          <Image src={logo} alt="logo" height={50} width={130} />
+          <Image src={logo} alt="logo" height={50} width={130} loading="eager" />
         </Link>
 
         <ul className="hidden md:flex items-center gap-6">
