@@ -25,9 +25,9 @@ const Footer = () => {
 
   const usefulLinks = [
     { name: "Home", href: "/" },
-    { name: "Rooms", href: "/rooms" },
-    { name: "About Us", href: "/about" },
-    { name: "Contact", href: "/contact" },
+    { name: "Explore Cars", href: "/explore-cars" },
+    { name: " Add Car", href: "/addcar" },
+    { name: "My Bookings", href: "/mybookings" },
   ];
 
   return (
