@@ -2,9 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GiSelfLove } from "react-icons/gi";
-import { BsLightningChargeFill } from "react-icons/bs";
-import { PiUsersFill } from "react-icons/pi";
-import { TbAutomaticGearbox } from "react-icons/tb";
+
 import { Card, Chip, Button, Separator } from "@heroui/react";
 
 const CarsCard = ({ car }) => {
@@ -61,20 +59,7 @@ const CarsCard = ({ car }) => {
 
                 <Separator />
 
-                <div className="flex items-center gap-3 px-4 lg:px-5 py-3 lg:py-4">
-                    <Chip size="sm" variant="secondary" className="flex items-center gap-1.5">
-                        <TbAutomaticGearbox size={13} />
-                        <Chip.Label>Automatic</Chip.Label>
-                    </Chip>
-                    <Chip size="sm" variant="secondary" className="flex items-center gap-1.5">
-                        <PiUsersFill size={13} />
-                        <Chip.Label>5 Seats</Chip.Label>
-                    </Chip>
-                    <Chip size="sm" variant="secondary" className="flex items-center gap-1.5">
-                        <BsLightningChargeFill size={13} />
-                        <Chip.Label>Electric</Chip.Label>
-                    </Chip>
-                </div>
+               
             </Card>
         </Link>
     );

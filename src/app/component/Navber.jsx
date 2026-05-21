@@ -85,9 +85,6 @@ const Navber = () => {
                         <FaGear className="size-3.5 text-muted" />
                       </div>
                     </Dropdown.Item>
-                    <Dropdown.Item id="new-project" textValue="New project">
-
-                    </Dropdown.Item>
                     <Dropdown.Item onClick={handleSingOut} id="logout" textValue="Logout" variant="danger">
                       <div className="flex w-full items-center justify-between gap-2">
                         <Label>Log Out</Label>
