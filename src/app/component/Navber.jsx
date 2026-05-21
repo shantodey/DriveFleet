@@ -35,6 +35,7 @@ const Navber = () => {
           <li><Link href="/" className="text-white text-sm font-medium hover:text-foreground no-underline">Home</Link></li>
           <li><Link href={"/explore-cars"} className="text-white text-sm font-medium hover:text-foreground no-underline">Explore Cars</Link></li>
           <li><Link href={'/addcar'} className="text-white text-sm font-medium hover:text-foreground no-underline">Add Car</Link></li>
+          <li><Link href={'/mycars'} className="text-white text-sm font-medium hover:text-foreground no-underline">My Added Cars</Link></li>
           <li><Link href={"/mybookings"} className="text-white text-sm font-medium hover:text-foreground no-underline">My Bookings</Link></li>
         </ul>
 
@@ -70,7 +71,7 @@ const Navber = () => {
                   </div>
                   <Dropdown.Menu>
                     <Dropdown.Item id="dashboard" textValue="Dashboard">
-                      <Label>Dashboard</Label>
+                      <Label>My Added Cars</Label>
                     </Dropdown.Item>
                     <Dropdown.Item id="profile" textValue="Profile">
                       <div className="flex w-full items-center justify-between gap-2">
@@ -116,6 +117,9 @@ const Navber = () => {
           </Link>
           <Link href="/addcar" className="text-white text-base font-medium no-underline transition-colors hover:text-gray-300" onClick={() => setIsOpen(false)}>
             Add Car
+          </Link>
+          <Link href="/mycars" className="text-white text-base font-medium no-underline transition-colors hover:text-gray-300" onClick={() => setIsOpen(false)}>
+            My Added Cars
           </Link>
           <Link href="/mybookings" className="text-white text-base font-medium no-underline transition-colors hover:text-gray-300" onClick={() => setIsOpen(false)}>
             My Bookings

@@ -7,7 +7,13 @@ const FeaturedCar = async () => {
     });
     const data = await res.json();
 
-    return <FeaturedCarSlider cars={data.slice(0, 6)} />;
+    return (
+        <section>
+            <div className="container mx-auto">
+                <FeaturedCarSlider cars={data.slice(0, 6)} />
+            </div>
+        </section>
+    );
 };
 
 export default FeaturedCar;

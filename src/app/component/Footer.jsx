@@ -37,7 +37,7 @@ const Footer = () => {
 
           <div className="space-y-4">
             <Link href="/" className="flex items-center gap-3">
-              
+
               <span className="text-2xl font-bold tracking-tight text-foreground">
                 DriveFleet
               </span>
@@ -135,8 +135,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-
-      &copy;Shanto Chandra dey
     </footer>
   );
 };

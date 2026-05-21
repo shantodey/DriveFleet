@@ -4,16 +4,28 @@ import { FieldError, Input, Label, TextField, Select, ListBox, TextArea, Button 
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
-
-
+import { authClient } from "@/lib/auth-client";
 
 const AddCarPage = () => {
     const [isAvailable, setIsAvailable] = useState(true);
+    const { data: session } = authClient.useSession();
+    const user = session?.user;
+    console.log(user);
+    
     const onSubmit = async (e) => {
         e.preventDefault();
+        if (!user) {
+            toast.error("Please log in before adding a car.");
+            return;
+        }
+
         const formData = new FormData(e.currentTarget);
         const addCar = Object.fromEntries(formData.entries());
         addCar.availabilityStatus = isAvailable ? "Available" : "Unavailable";
+        addCar.ownerId = user.id;
+        addCar.ownerName = user.name;
+        addCar.ownerEmail = user.email;
+
         console.log("Final Form Data:", addCar);
 
         const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
@@ -31,6 +43,15 @@ const AddCarPage = () => {
         } else {
             toast.error(data.message || 'Error');
         }
+    }
+
+    if (!user) {
+        return (
+            <div className="container mx-auto px-4 py-24 text-center">
+                <h2 className="text-3xl font-bold">Please log in to add a new car listing.</h2>
+                <p className="mt-3 text-gray-500">Owners must be signed in to manage their fleet.</p>
+            </div>
+        );
     }
 
     return (
@@ -137,7 +158,7 @@ const AddCarPage = () => {
                                 onChange={(e) => setIsAvailable(e.target.checked)}
                                 className="sr-only peer"
                             />
-                            <div className="w-14 h-7 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-500/30 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:start-[4px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-cyan-500"></div>
+                            <div className="w-14 h-7 bg-gray-200 rounded-full peer peer-focus:ring-2 peer-focus:ring-cyan-500/30 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full after:content-[''] after:absolute after:top-0.5 after:inset-s-1 after:bg-white after:border-gray-300 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-cyan-500"></div>
                         </label>
                     </div>
 

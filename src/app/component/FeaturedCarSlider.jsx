@@ -2,7 +2,7 @@
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { Card,  Typography  } from "@heroui/react";
+import { Card, Typography } from "@heroui/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import Image from "next/image";
@@ -12,7 +12,7 @@ const FeaturedCarSlider = ({ cars }) => {
         <section className="py-16 px-4 max-w-6xl mx-auto">
             <Typography type="heading-md" weight="medium" className="mb-8">
                 <h1 className="text-5xl mb-7"> Featured Cars</h1>
-               
+
             </Typography>
 
             <Swiper
@@ -22,16 +22,18 @@ const FeaturedCarSlider = ({ cars }) => {
                 spaceBetween={20}
                 slidesPerView={1}
                 breakpoints={{
-                    640:  { slidesPerView: 2 },
+                    320: { slidesPerView: 1 },  
+                    768: { slidesPerView: 2 },
                     1024: { slidesPerView: 3 },
                 }}
             >
+
                 {cars.map((car) => (
                     <SwiperSlide key={car._id}>
-                        <Card variant="default" className="overflow-hidden">
+                        <Card variant="default" className="overflow-hidden h-full w-full">
                             <Image
-                            height={200}
-                            width={400}
+                                height={200}
+                                width={400}
                                 src={car.imageUrl}
                                 alt={car.carName}
                                 className="w-full h-100 object-cover"
