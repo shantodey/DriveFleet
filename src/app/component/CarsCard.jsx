@@ -11,7 +11,7 @@ const CarsCard = ({ car }) => {
     return (
         <Link href={`explore-cars/${_id}`}>
             <Card
-                ispressable
+                
                 shadow="none"
                 className="group w-full rounded-3xl border border-gray-100 hover:border-gray-200 hover:shadow-xl transition-all duration-300"
             >

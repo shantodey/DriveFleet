@@ -8,33 +8,32 @@ import { redirect } from "next/navigation";
 
 
 const AddCarPage = () => {
-  const [isAvailable, setIsAvailable] = useState(true);
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    const addCar = Object.fromEntries(formData.entries());
-    addCar.availabilityStatus = isAvailable ? "Available" : "Unavailable";
-    
-    console.log("Final Form Data:", addCar);
+    const [isAvailable, setIsAvailable] = useState(true);
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const addCar = Object.fromEntries(formData.entries());
+        addCar.availabilityStatus = isAvailable ? "Available" : "Unavailable";
+        console.log("Final Form Data:", addCar);
 
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
-        method: "POST",
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(addCar)
-    });
-    
-    const data = await res.json();
-    if (res.ok) {
-        toast.success(data.message || 'Success');
-        redirect('/')
-    } else {
-        toast.error(data.message || 'Error');
+        const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(addCar)
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+            toast.success(data.message || 'Success');
+            redirect('/')
+        } else {
+            toast.error(data.message || 'Error');
+        }
     }
-}
 
-  return (
+    return (
         <div className="container mx-auto">
             <h2 className="text-3xl ps-5">Add New Car Listing</h2>
             <form onSubmit={onSubmit} className="max-w-2xl mx-auto p-10 space-y-8 shadow-2xl">
@@ -128,7 +127,7 @@ const AddCarPage = () => {
                         </div>
 
                         <label className="relative inline-flex items-center cursor-pointer select-none">
-                            
+
                             <input
                                 id="availabilityStatus"
                                 name="availabilityStatus"
@@ -144,10 +143,10 @@ const AddCarPage = () => {
 
                 </div>
 
-                <Button  type="submit"  variant="outline"  className="rounded-none w-full bg-cyan-500 text-white"> Add Car Listing </Button>
+                <Button type="submit" variant="outline" className="rounded-none w-full bg-cyan-500 text-white"> Add Car Listing </Button>
             </form>
         </div>
-  );
+    );
 };
 
 export default AddCarPage;

@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# DriveFleet
 
-## Getting Started
+Welcome to **DriveFleet** — a modern, responsive car rental marketplace built on the client side to help users discover, book, and manage vehicles with speed and confidence.
 
-First, run the development server:
+## 🌐 Live Site
+
+Experience the live client app directly at:
+
+**https://drivefleet-client.vercel.app**
+
+> This URL points to the DriveFleet client-side experience for browsing cars, managing bookings, and accessing the full rental workflow.
+
+## 🚗 What DriveFleet Offers
+
+DriveFleet is designed to deliver a polished rental experience with a clean user interface and smart booking features.
+
+- Fast client-side browsing of available cars with responsive filters and search.
+- Seamless booking flow for customers to reserve vehicles in a few clicks.
+- Secure authentication and account management for registered users.
+- Engaging car detail pages with rich vehicle features and high-quality visuals.
+- Admin-friendly car management and booking review from the client dashboard.
+
+## ✨ Why Choose DriveFleet
+
+DriveFleet blends modern web design, performance, and a customer-first rental journey. It is perfect for startups, agencies, or fleet operators who want a fresh vehicle booking platform that feels intuitive and reliable.
+
+## 📦 Project Structure
+
+The app is built with Next.js and organized for clarity on the client side:
+
+- `app/` — main Next.js application routes and pages
+- `src/component/` — reusable UI components like navigation, cards, and modals
+- `src/lib/` — client-side helpers for authentication and API access
+- `public/` — static assets and media for the UI
+
+## 🚀 Getting Started Locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to explore the DriveFleet client app locally.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🤝 Contribution
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+DriveFleet is open to improvements and enhancements. If you want to add new features, improve the booking flow, or enhance styling, contributions are welcome.
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build a beautiful rental experience and keep the journeys moving with DriveFleet.
