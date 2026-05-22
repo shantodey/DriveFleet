@@ -8,7 +8,7 @@ import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { HiArrowRight } from "react-icons/hi";
 
 const CarsCard = ({ car }) => {
-    const { _id, imageUrl, carName, dailyRentPrice, location, category } = car;
+    const { _id, imageUrl, carName, dailyRentPrice, location, category,seatCapacity } = car;
 
     return (
         <Link href={`explore-cars/${_id}`}>
@@ -39,7 +39,7 @@ const CarsCard = ({ car }) => {
                                 <div className="mt-3 flex items-center gap-4 text-sm text-gray-300">
                                     <div className="flex items-center gap-1.5">
                                         <MdOutlineAirlineSeatReclineNormal size={16} />
-                                        <span>5 Seats</span>
+                                        <span>{seatCapacity} Seats</span>
                                     </div>
 
                                     <div className="flex items-center gap-1.5">

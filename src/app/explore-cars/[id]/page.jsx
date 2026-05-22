@@ -26,6 +26,8 @@ const ViewCarsPage = async ({ params }) => {
     const car = await res.json();
 
     const { carName, imageUrl, carType, description, seatCapacity } = car;
+    console.log(seatCapacity);
+    
 
     return (
         <section className="min-h-screen bg-[#050505] text-white">

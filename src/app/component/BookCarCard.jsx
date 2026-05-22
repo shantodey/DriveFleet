@@ -47,15 +47,10 @@ const BookCarCard = ({ car }) => {
         });
 
         const data = await res.json();
-
-        console.log(data);
-
         toast.success("Booking Successful");
     };
-
     return (
         <Modal>
-
             <Button className="h-15 w-full rounded-2xl border border-white/10 bg-white px-6 text-sm font-black uppercase tracking-[3px] text-black transition-all duration-300 hover:scale-[1.01] hover:bg-[#f5f5f5] active:scale-[0.99]">
                 Book This Vehicle
             </Button>
@@ -87,7 +82,7 @@ const BookCarCard = ({ car }) => {
                                     <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                                         <TextField defaultValue={name} className="w-full" name="name" type="text">
                                             <Label className="mb-3 block text-xs uppercase tracking-[4px] text-gray-500">  Full Name</Label>
-                                            <Input  placeholder="Enter your name" className="h-15 rounded-2xl border border-white/10 bg-white/3 px-5 text-white placeholder:text-gray-500" />
+                                            <Input placeholder="Enter your name" className="h-15 rounded-2xl border border-white/10 bg-white/3 px-5 text-white placeholder:text-gray-500" />
                                         </TextField>
 
                                         <TextField defaultValue={email} className="w-full" name="email" type="email">
@@ -98,7 +93,7 @@ const BookCarCard = ({ car }) => {
                                         <TextField className="w-full md:col-span-2" name="phone" type="tel">
                                             <Label className="mb-3 block text-xs uppercase tracking-[4px] text-gray-500"> Phone Number </Label>
 
-                                            <Input placeholder="Enter your phone number"  className="h-15 rounded-2xl border border-white/10 bg-white/3px-5 text-white placeholder:text-gray-500"/>
+                                            <Input placeholder="Enter your phone number" className="h-15 rounded-2xl border border-white/10 bg-white/3px-5 text-white placeholder:text-gray-500" />
                                         </TextField>
 
                                     </div>
@@ -114,10 +109,15 @@ const BookCarCard = ({ car }) => {
                                             </div>
 
                                             <DateField className="w-full" value={startDate} onChange={setStartDate}>
-                                                <DateField.Group className="flex h-15 items-center rounded-2xl border border-white/10 bg-white/3 px-5 text-white">
-                                                    <DateField.Input className="flex gap-1 text-white">   {(segment) => <DateField.Segment segment={segment} />} </DateField.Input>
+                                                <DateField.Group className="flex h-15 items-center rounded-2xl border bg-transparent border-white/10 bg-white/3 px-5 text-white">
+                                                    <DateField.Input className="flex gap-1 text-white bg-black">
+                                                        {(segment) => <DateField.Segment  segment={segment} />}
+                                                    </DateField.Input>
                                                 </DateField.Group>
                                             </DateField>
+
+
+                                           
 
                                         </div>
 
@@ -132,13 +132,13 @@ const BookCarCard = ({ car }) => {
                                                 </div>
 
                                             </div>
-                                            <DateField className="w-full" value={endDate} onChange={setEndDate}>
+                                             <DateField className="w-full" value={endDate} onChange={setEndDate}>
                                                 <DateField.Group className="flex h-15 items-center rounded-2xl border border-white/10 bg-white/3 px-5 text-white">
                                                     <DateField.Input className="flex gap-1 text-white">
                                                         {(segment) => <DateField.Segment segment={segment} />}
                                                     </DateField.Input>
                                                 </DateField.Group>
-                                                <FieldError className="mt-3 text-xs text-red-400">  Date must be in the future</FieldError>
+                                                <FieldError className="mt-3 text-xs text-red-400">Date must be in the future</FieldError>
                                             </DateField>
                                         </div>
                                     </div>
@@ -164,7 +164,7 @@ const BookCarCard = ({ car }) => {
                                                 </label>
 
                                                 <label className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-5 py-4 transition-all duration-300 ${driverOption === "no" ? 'border-[#b89b65]/20 bg-[#b89b65]/10 text-[#d6bb84]' : 'border-white/10 bg-white/2 text-gray-300'}`}>
-                                                    <input  type="radio"  name="driverNeeded"  value="no"  checked={driverOption === "no"}  onChange={() => setDriverOption("no")}   className="hidden" />
+                                                    <input type="radio" name="driverNeeded" value="no" checked={driverOption === "no"} onChange={() => setDriverOption("no")} className="hidden" />
                                                     <div className={`h-4 w-4 rounded-full border ${driverOption === "no" ? 'border-[#d6bb84] bg-[#d6bb84]' : 'border-gray-500'}`} />
                                                     <span className="text-sm font-bold uppercase tracking-[2px]">  No</span>
                                                 </label>

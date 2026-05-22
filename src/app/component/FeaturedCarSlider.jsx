@@ -19,9 +19,7 @@ const FeaturedCarSlider = ({ cars }) => {
 
       <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className=" mb-4 text-[12px]  font-medium uppercase tracking-[0.35em] text-[#C8A96B]">
-            Our Premium Fleet
-          </p>
+          <p className=" mb-4 text-[12px]  font-medium uppercase tracking-[0.35em] text-[#C8A96B]"> Our Premium Fleet</p>
           <h2 className=" text-4xl sm:text-5xl font-black tracking-tight text-white"> Featured Cars</h2>
         </div>
 
@@ -67,9 +65,7 @@ const FeaturedCarSlider = ({ cars }) => {
 
                     <div className="mt-2 flex items-center gap-2 text-white/50">
                       <FaLocationDot className="text-[#C8A96B]" />
-                      <p className="text-sm">
-                        Dhaka
-                      </p>
+                      <p className="text-sm"> Dhaka </p>
                     </div>
                   </div>
 

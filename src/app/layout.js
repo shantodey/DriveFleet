@@ -1,23 +1,20 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 import "./globals.css";
-// import Swiper JS
-import Swiper from 'swiper';
-// import Swiper styles
-import 'swiper/css';
 
+import "swiper/css";
 
-import NavbarSection from "./component/Navber";
 import Navber from "./component/Navber";
 import { Toaster } from "react-hot-toast";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const bebas = Bebas_Neue({
+  variable: "--font-bebas",
   subsets: ["latin"],
+  weight: "400",
 });
 
 export const metadata = {
@@ -26,16 +23,31 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+
   return (
+
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${bebas.variable} h-full scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col">
-        <Navber/>
-        {children}
-         <Toaster />
-        </body>
+      <body className="min-h-screen bg-[#070707] font-[var(--font-inter)] text-white antialiased">
+        <Navber />
+        <main className="flex-1">
+          {children}
+        </main>
+        <Toaster
+          position="top-center"
+          toastOptions={{
+            style: {
+              background: "#111111",
+              color: "#ffffff",
+              border: "1px solid rgba(255,255,255,0.08)",
+            },
+          }}
+        />
+
+      </body>
+
     </html>
   );
 }
