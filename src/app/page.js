@@ -9,7 +9,7 @@ export default function Home() {
    <>
    <Hero></Hero>
    <AboutUsPage></AboutUsPage>
-   <FeaturedCar></FeaturedCar>
+   {/* <FeaturedCar></FeaturedCar> */}
    <Footer></Footer>
    </>
   );
