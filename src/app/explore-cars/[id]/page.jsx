@@ -33,7 +33,7 @@ const ViewCarsPage = async ({ params }) => {
             <div className="relative overflow-hidden border-b border-white/10">
                 <div className="absolute inset-0">
                     <Image  src={imageUrl} alt={carName}  fill  priority  className="object-cover opacity-25 blur-[2px]"/>
-                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/85 to-[#050505]" />
+                    <div className="absolute inset-0 bg-linear-to-b from-black/60 via-black/85 to-[#050505]" />
                 </div>
 
                 <div className="relative container mx-auto px-4 md:px-6 py-14">
@@ -48,9 +48,9 @@ const ViewCarsPage = async ({ params }) => {
                     <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12">
                         <div className="lg:col-span-7">
                             <div className="group relative overflow-hidden rounded-[32px] border border-white/10 bg-[#111111] shadow-[0_0_50px_rgba(0,0,0,0.5)]">
-                                <div className="relative h-[300px] sm:h-[450px] lg:h-[620px] overflow-hidden">
+                                <div className="relative h-75 sm:h-112 lg:h-155 overflow-hidden">
                                     <Image   src={imageUrl}  alt={carName}  fill priority sizes="(max-width:1024px) 100vw, 60vw"  className="object-cover transition-transform duration-700 group-hover:scale-105"/>
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
+                                    <div className="absolute inset-0 bg-linear-to-t from-black via-black/10 to-transparent" />
                                     <span className={`absolute left-6 top-6 rounded-full border px-5 py-2 text-xs font-black uppercase tracking-[3px] backdrop-blur-md ${car.availabilityStatus === 'Available' ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400' : 'border-red-500/30 bg-red-500/10 text-red-400'}`}>
                                         {car.availabilityStatus}
                                     </span>
@@ -120,7 +120,7 @@ const ViewCarsPage = async ({ params }) => {
                         </div>
 
                         <div className="space-y-8 lg:col-span-5">
-                            <div className="rounded-[32px] border border-white/10 bg-gradient-to-b from-[#111111] to-[#090909] p-7 shadow-[0_0_40px_rgba(0,0,0,0.4)]">
+                            <div className="rounded-[32px] border border-white/10 bg-linear-to-b from-[#111111] to-[#090909] p-7 shadow-[0_0_40px_rgba(0,0,0,0.4)]">
                                 <p className="text-xs uppercase tracking-[5px] text-[#C8A96B]">  Luxury Experience </p>
                                 <h2 className="mt-4 text-3xl font-black leading-tight text-white">  Drive Beyond Expectations</h2>
                                 <p className="mt-5 text-base leading-8 text-gray-400"> {description}</p>
