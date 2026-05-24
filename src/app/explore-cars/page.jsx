@@ -2,16 +2,26 @@ import CarsCard from "../component/CarsCard";
 import SearchComponent from "../component/SearchComponent";
 
 const gettingDataFormApi = async (q, t) => {
-    // const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars?q=${q || ''}&t=${t || ''}`, { cache: "no-store" });
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars`, { cache: "no-store" });
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/cars`;
+    
+    console.log("Fetching from:", url); // 👈 check this in Vercel logs
 
-    // if (!res.ok) {
-    //     throw new Error(`Failed: ${res.status}`);
-    // }
+    const res = await fetch(url, { cache: "no-store" });
 
-    const availableCars = await res.json();
+    if (!res.ok) {
+        const text = await res.text();
+        console.error("Response body:", text); // 👈 see the actual HTML error
+        throw new Error(`Failed: ${res.status}`);
+    }
 
-    return availableCars;
+    const contentType = res.headers.get("content-type");
+    if (!contentType?.includes("application/json")) {
+        const text = await res.text();
+        console.error("Non-JSON response:", text);
+        throw new Error("Server returned non-JSON response");
+    }
+
+    return res.json();
 };
 
 const ExploreCarsPage = async ({ searchParams }) => {

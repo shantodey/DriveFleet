@@ -1,4 +1,6 @@
+
 import FeaturedCarSlider from "./FeaturedCarSlider";
+
 const FeaturedCar = async () => {
   let cars = [];
   
@@ -14,7 +16,6 @@ const FeaturedCar = async () => {
     console.error("Failed to fetch cars:", error);
   }
 
-  // যদি ডাটা না থাকে বা সার্ভার থেকে এরর আসে, তবে এই সেকশনটি দেখাবে না (ক্র্যাশ করবে না)
   if (!cars || cars.length === 0) {
     return null; 
   }

@@ -45,7 +45,7 @@ const FeaturedCarSlider = ({ cars }) => {
       >
         {cars.map((car) => (
           <SwiperSlide key={car._id}>
-            <div className=" group overflow-hidden rounded-[30px] border border-white/10 bg-white/3backdrop-blur-xl transition-all duration-500 hover:-translate-y-3  hover:border-[#C8A96B]/40
+            <div className=" group overflow-hidden rounded-[30px] border border-white/10 bg-white/3 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3  hover:border-[#C8A96B]/40
  hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]  " >
               <div className="relative overflow-hidden">
                 <Image height={500} width={700} src={car.imageUrl} alt={car.carName} className="  h-80 w-full  object-cover  transition-transform duration-700 group-hover:scale-110 " />
