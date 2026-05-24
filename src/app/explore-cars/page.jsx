@@ -4,9 +4,9 @@ import SearchComponent from "../component/SearchComponent";
 const gettingDataFormApi = async (q, t) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars?q=${q || ''}&t=${t || ''}`, { cache: "no-store" });
 
-    if (!res.ok) {
-        throw new Error(`Failed: ${res.status}`);
-    }
+    // if (!res.ok) {
+    //     throw new Error(`Failed: ${res.status}`);
+    // }
 
     const availableCars = await res.json();
 
