@@ -1,0 +1,23 @@
+# Dependency directories (এগুলো গিটহাবে যাবে না)
+client/node_modules/
+server/node_modules/
+node_modules/
+
+# Next.js production build outputs
+client/.next/
+client/out/
+
+# Environment variables / Secrets (সিক্রেট ফাইল ইগনোর করার জন্য)
+client/.env*.local
+server/.env
+.env
+.env.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Operating System Files
+.DS_Store
+Thumbs.db
