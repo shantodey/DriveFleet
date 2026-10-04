@@ -1,17 +1,10 @@
 'use client';
 
 import { useRouter, useSearchParams } from 'next/navigation';
-import { IoSearchOutline } from "react-icons/io5";
-import { HiOutlineAdjustmentsHorizontal } from "react-icons/hi2";
+import { Search, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 const categories = [
     { id: "SUV", label: "SUV" },
@@ -49,7 +42,7 @@ const SearchComponent = () => {
                 </div>
 
                 <div className="hidden h-14 w-14 items-center justify-center rounded-2xl border border-[#C8A96B]/20 bg-[#C8A96B]/10 text-[#8A672A] dark:text-[#C8A96B] md:flex">
-                    <HiOutlineAdjustmentsHorizontal size={24} />
+                    <SlidersHorizontal size={24} />
                 </div>
             </div>
 
@@ -62,13 +55,10 @@ const SearchComponent = () => {
 
                         <div className="relative flex h-17 items-center overflow-hidden rounded-2xl border border-border bg-background px-5 transition-all duration-300 hover:border-[#C8A96B]/40 focus-within:border-[#C8A96B] focus-within:bg-[#C8A96B]/[0.03]">
                             <div className="mr-4 text-2xl text-[#C8A96B]">
-                                <IoSearchOutline />
+                                <Search />
                             </div>
 
-                            <Input
-                                type="text"
-                                defaultValue={searchParams.get('q') || ""}
-                                onChange={(e) => updateParams('q', e.target.value)}
+                            <Input type="text" defaultValue={searchParams.get('q') || ""} onChange={(e) => updateParams('q', e.target.value)}
                                 placeholder="Search Ferrari, Rolls Royce, Lamborghini..."
                                 className="h-full w-full border-none bg-transparent p-0 text-base font-medium text-foreground placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0"
                             />
@@ -82,21 +72,15 @@ const SearchComponent = () => {
                             Car Category
                         </Label>
 
-                        <Select
-                            value={searchParams.get('t') || ""}
-                            onValueChange={(value) => updateParams('t', value)}
-                        >
+                        <Select value={searchParams.get('t') || ""} onValueChange={(value) => updateParams('t', value)}>
                             <SelectTrigger className="flex h-17 w-full items-center justify-between rounded-2xl border border-border bg-background px-5 text-left text-base font-medium text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 focus:border-[#C8A96B] focus:ring-0 focus:ring-offset-0 data-[placeholder]:text-muted-foreground">
                                 <SelectValue placeholder="Select car type" />
                             </SelectTrigger>
 
                             <SelectContent className="overflow-hidden rounded-2xl border border-border bg-popover p-2 shadow-2xl">
                                 {categories.map((item) => (
-                                    <SelectItem
-                                        key={item.id}
-                                        value={item.id}
-                                        className="rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-[#C8A96B]/10 hover:text-[#8A672A] dark:hover:text-white focus:bg-[#C8A96B]/10 focus:text-[#8A672A] dark:focus:text-white cursor-pointer"
-                                    >
+                                    <SelectItem key={item.id} value={item.id}
+                                        className="rounded-xl px-4 py-3 text-sm font-medium text-foreground transition-all duration-200 hover:bg-[#C8A96B]/10 hover:text-[#8A672A] dark:hover:text-white focus:bg-[#C8A96B]/10 focus:text-[#8A672A] dark:focus:text-white cursor-pointer">
                                         {item.label}
                                     </SelectItem>
                                 ))}

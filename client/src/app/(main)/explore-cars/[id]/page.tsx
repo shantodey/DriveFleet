@@ -10,7 +10,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 
 interface ViewCarsPageProps {
-  params: Promise<{ id: string }>;
+    params: Promise<{ id: string }>;
 }
 
 const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
@@ -42,13 +42,7 @@ const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
         <section className="min-h-screen bg-background text-foreground">
             <div className="relative overflow-hidden border-b border-border">
                 <div className="absolute inset-0">
-                    <Image 
-                        src={imageUrl} 
-                        alt={carName} 
-                        fill 
-                        priority 
-                        className="object-cover opacity-25 blur-[2px]"
-                    />
+                    <Image src={imageUrl} alt={carName} fill priority className="object-cover opacity-25 blur-[2px]" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-background/40 to-background dark:from-black/60 dark:via-black/85 dark:to-[#050505]" />
                 </div>
 
@@ -66,24 +60,14 @@ const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
                             <Card className="group relative overflow-hidden rounded-[32px] border-border bg-card p-0 shadow-xl">
                                 <CardContent className="p-0">
                                     <div className="relative h-75 sm:h-112 lg:h-155 overflow-hidden">
-                                        <Image 
-                                            src={imageUrl} 
-                                            alt={carName} 
-                                            fill 
-                                            priority 
-                                            sizes="(max-width:1024px) 100vw, 60vw" 
-                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                        />
+                                        <Image src={imageUrl} alt={carName} fill priority sizes="(max-width:1024px) 100vw, 60vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
-                                        
-                                        <Badge 
-                                            variant="outline" 
-                                            className={`absolute left-6 top-6 rounded-full px-5 py-2 text-xs font-black uppercase tracking-[3px] backdrop-blur-md ${
-                                                availabilityStatus === 'Available' 
-                                                    ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400' 
-                                                    : 'border-red-500/30 bg-red-500/10 text-red-400'
-                                            }`}
-                                        >
+
+                                        <Badge variant="outline" className={`absolute left-6 top-6 rounded-full px-5 py-2 text-xs font-black uppercase tracking-[3px] backdrop-blur-md
+                                         ${availabilityStatus === 'Available'
+                                                ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
+                                                : 'border-red-500/30 bg-red-500/10 text-red-400'
+                                            }`}>
                                             {availabilityStatus}
                                         </Badge>
 
@@ -177,9 +161,7 @@ const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
                                         {availabilityStatus === 'Available' ? (
                                             <BookCarCard car={car} />
                                         ) : (
-                                            <Button 
-                                                disabled 
-                                                className="w-full rounded-2xl border border-border bg-muted py-6 text-sm font-bold uppercase tracking-[3px] text-muted-foreground"
+                                            <Button disabled className="w-full rounded-2xl border border-border bg-muted py-6 text-sm font-bold uppercase tracking-[3px] text-muted-foreground"
                                             >
                                                 Currently Unavailable
                                             </Button>

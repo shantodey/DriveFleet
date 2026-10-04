@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
-import { FaArrowRight, FaLocationDot } from "react-icons/fa6";
+import { ArrowRight, MapPin } from "lucide-react";
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -41,7 +41,7 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
         >
           <Link href="/explore-cars">
             View All Cars
-            <FaArrowRight />
+            <ArrowRight />
           </Link>
         </Button>
       </div>
@@ -63,7 +63,7 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
       >
         {cars.map((car) => (
           <SwiperSlide key={car._id}>
-            <Card             className="group overflow-hidden rounded-[30px] border-border bg-card p-0 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-[#C8A96B]/40 hover:shadow-xl">
+            <Card className="group overflow-hidden rounded-[30px] border-border bg-card p-0 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-[#C8A96B]/40 hover:shadow-xl">
               {/* Image & Type Badge */}
               <div className="relative overflow-hidden">
                 <Image
@@ -89,13 +89,13 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
                     </h3>
 
                     <div className="mt-2 flex items-center gap-2 text-muted-foreground">
-                      <FaLocationDot className="text-[#C8A96B]" />
+                      <MapPin className="text-[#C8A96B]" />
                       <p className="text-sm">{car.location || "Dhaka"}</p>
                     </div>
                   </div>
 
                   <div className="rounded-full bg-[#C8A96B] p-3 text-black transition-all duration-300 group-hover:rotate-45">
-                    <FaArrowRight />
+                    <ArrowRight />
                   </div>
                 </div>
 

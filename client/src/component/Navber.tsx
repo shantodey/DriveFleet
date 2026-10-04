@@ -3,9 +3,6 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
-import { FaGear } from "react-icons/fa6";
-import { IoIosLogOut } from "react-icons/io";
 import logo from "@/assets/Logo.png";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
@@ -19,6 +16,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { LogOut, Menu, Settings, X } from "lucide-react";
 
 interface NavLink {
   name: string;
@@ -52,7 +50,7 @@ const Navbar: React.FC = () => {
             className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 hover:text-[#C8A96B] md:hidden"
             aria-label="Toggle Menu"
           >
-            {isOpen ? <RxCross1 className="size-5" /> : <RxHamburgerMenu className="size-5" />}
+            {isOpen ? <X className="size-5" /> : <Menu  className="size-5" />}
           </button>
 
           <Link href="/" className="hidden items-center no-underline md:flex">
@@ -132,7 +130,7 @@ const Navbar: React.FC = () => {
                 <DropdownMenuItem className="cursor-pointer focus:bg-accent focus:text-accent-foreground">
                   <div className="flex w-full items-center justify-between">
                     <span>Settings</span>
-                    <FaGear className="size-4 text-[#C8A96B]" />
+                    <Settings className="size-4 text-[#C8A96B]" />
                   </div>
                 </DropdownMenuItem>
 
@@ -144,7 +142,7 @@ const Navbar: React.FC = () => {
                 >
                   <div className="flex w-full items-center justify-between">
                     <span>Log Out</span>
-                    <IoIosLogOut className="size-4 text-red-400" />
+                    <LogOut className="size-4 text-red-400" />
                   </div>
                 </DropdownMenuItem>
               </DropdownMenuContent>

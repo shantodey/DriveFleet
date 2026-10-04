@@ -1,22 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
 import heroimg from "@/assets/hero_background.jpg";
-
-import { GrLinkNext } from "react-icons/gr";
-import { FaCarSide } from "react-icons/fa";
-import { MdSecurity } from "react-icons/md";
-import { RiCustomerService2Fill } from "react-icons/ri";
+import { Car, Headset, MoveUpRight, ShieldCheck } from "lucide-react";
 
 const STATS = [
-  {  icon: FaCarSide,  value: "500+",  label: "Premium Cars",},
-  {  icon: RiCustomerService2Fill,  value: "24/7",  label: "Concierge Support",},
-  {  icon: MdSecurity,  value: "100%",  label: "Insured & Secure",},
+  {  icon: Car,  value: "500+",  label: "Premium Cars",},
+  {  icon: Headset,  value: "24/7",  label: "Concierge Support",},
+  {  icon: ShieldCheck,  value: "100%",  label: "Insured & Secure",},
 ];
 
 const Hero = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-background">
-      {/* Background Image & Overlays */}
       <Image  src={heroimg}  alt="Luxury Car"  fill  priority  sizes="100vw"  className="object-cover object-center scale-105"/>
       <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/50 dark:from-black dark:via-black/70 dark:to-black/40" />
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent dark:from-[#0B0B0B]" />
@@ -49,7 +44,7 @@ const Hero = () => {
                   className="inline-flex items-center gap-3 rounded-full bg-[#C8A96B] px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-black transition-all duration-300 hover:scale-105 hover:shadow-[0_0_30px_rgba(200,169,107,0.45)]"
                 >
                   Explore Cars
-                  <GrLinkNext className="text-base" />
+                  <MoveUpRight className="text-base" />
                 </Link>
                 
                 <Link

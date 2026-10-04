@@ -4,9 +4,7 @@ import { headers } from "next/headers";
 import Image from "next/image";
 import Link from "next/link";
 import Nothing from "@/assets/NothingToShow.png";
-import { IoLocationOutline } from "react-icons/io5";
-import { LuUsers } from "react-icons/lu";
-import { HiOutlineArrowRight } from "react-icons/hi";
+import { MapPin, Users, ArrowRight } from "lucide-react";
 import EditMyCarDetels from "@/component/EditMyCarDetels";
 import DeleteMyAddCar from "@/component/DeleteMyAddCar";
 
@@ -128,7 +126,7 @@ sdf
                                                 <div className="flex items-center gap-4 rounded-2xl border border-border bg-background p-4">
 
                                                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-[#8A672A] dark:text-[#d6bb84]">
-                                                        <LuUsers size={20} />
+                                                        <Users size={20} />
                                                     </div>
 
                                                     <div>
@@ -146,7 +144,7 @@ sdf
                                                 <div className="flex items-center gap-4 rounded-2xl border border-border bg-background p-4">
 
                                                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-[#8A672A] dark:text-[#d6bb84]">
-                                                        <IoLocationOutline size={20} />
+                                                        <MapPin size={20} />
                                                     </div>
 
                                                     <div>
@@ -176,7 +174,7 @@ sdf
                                                     <span>
                                                         View Details
                                                     </span>
-                                                    <HiOutlineArrowRight size={18} />
+                                                    <ArrowRight size={18} />
                                                 </Button>
                                             </Link>
 

@@ -4,8 +4,7 @@ import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
-import { IoCarSportOutline } from "react-icons/io5";
-import { HiOutlineSparkles } from "react-icons/hi2";
+import { CarFront, Sparkles } from "lucide-react";
 
 import { authClient } from "@/lib/auth-client";
 import { createCar } from "@/services/api";
@@ -83,7 +82,7 @@ const AddCarPage = () => {
       <section className="flex min-h-screen items-center justify-center bg-background px-4 text-foreground">
         <div className="w-full max-w-xl rounded-[32px] border border-border bg-card p-10 text-center">
           <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-3xl border border-[#b89b65]/10 bg-[#b89b65]/5 text-[#d1b277]">
-            <IoCarSportOutline size={38} />
+            <CarFront size={38} />
           </div>
 
           <h2 className="mt-8 text-4xl font-black">Login Required</h2>
@@ -117,7 +116,7 @@ const AddCarPage = () => {
           </div>
 
           <div className="hidden h-16 w-16 items-center justify-center rounded-3xl border border-[#b89b65]/20 bg-[#b89b65]/10 text-[#8A672A] dark:text-[#d1b277] md:flex">
-            <HiOutlineSparkles size={28} />
+            <Sparkles size={28} />
           </div>
         </div>
 

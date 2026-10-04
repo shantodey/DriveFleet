@@ -1,23 +1,23 @@
-import { FaShieldAlt, FaCarSide, FaCrown } from "react-icons/fa";
+import { ShieldCheck, Car, Crown } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 
 const cardData = [
   {
-    icon: <FaCrown />,
+    icon: <Crown />,
     title: "Private Chauffeur Experience",
     description:
       "From airport arrivals to exclusive city rides, every booking is tailored around your lifestyle with premium concierge-level service.",
   },
   {
-    icon: <FaCarSide />,
+    icon: <Car />,
     title: "Handpicked Exotic Fleet",
     description:
       "Explore a refined collection of luxury sedans, exotic supercars, and elite SUVs maintained to perfection before every journey.",
   },
   {
-    icon: <FaShieldAlt />,
+    icon: <ShieldCheck />,
     title: "Transparent Luxury Pricing",
     description:
       "No hidden charges. No unexpected fees. Every rental includes clear pricing, trusted protection, and a seamless booking experience.",

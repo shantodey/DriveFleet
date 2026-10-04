@@ -2,10 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { GiSelfLove } from "react-icons/gi";
-import { IoLocationOutline } from "react-icons/io5";
-import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
-import { HiArrowRight } from "react-icons/hi";
+import { Heart, MapPin, Armchair, ArrowRight } from "lucide-react";
 import { Car } from "@/types/car";
 
 interface CarsCardProps {
@@ -13,7 +10,7 @@ interface CarsCardProps {
 }
 
 const CarsCard = ({ car }: CarsCardProps) => {
-    const { _id, imageUrl, carName, dailyRentPrice, location, category,seatCapacity } = car;
+    const { _id, imageUrl, carName, dailyRentPrice, location, category, seatCapacity } = car;
     return (
         <Link href={`explore-cars/${_id}`}>
             <div className="group overflow-hidden rounded-[28px] border border-border bg-card transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:shadow-lg">
@@ -30,7 +27,7 @@ const CarsCard = ({ car }: CarsCardProps) => {
                     </div>
 
                     <button className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white backdrop-blur-md transition-all duration-300 hover:border-red-500/40 hover:text-red-500">
-                        <GiSelfLove size={16} />
+                        <Heart size={16} />
                     </button>
 
                     <div className="absolute bottom-0 left-0 w-full p-5">
@@ -42,19 +39,19 @@ const CarsCard = ({ car }: CarsCardProps) => {
 
                                 <div className="mt-3 flex items-center gap-4 text-sm text-gray-200">
                                     <div className="flex items-center gap-1.5">
-                                        <MdOutlineAirlineSeatReclineNormal size={16} />
+                                        <Armchair size={16} />
                                         <span>{seatCapacity} Seats</span>
                                     </div>
 
                                     <div className="flex items-center gap-1.5">
-                                        <IoLocationOutline size={16} />
+                                        <MapPin size={16} />
                                         <span>{location || "Dhaka"}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C8A96B] text-black transition-transform duration-300 group-hover:translate-x-1">
-                                <HiArrowRight size={18} />
+                                <ArrowRight size={18} />
                             </div>
                         </div>
                     </div>
