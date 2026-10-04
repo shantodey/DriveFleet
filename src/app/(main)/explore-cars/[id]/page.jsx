@@ -7,7 +7,7 @@ import { MdOutlineSpeed } from 'react-icons/md';
 import { PiSteeringWheelBold } from 'react-icons/pi';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
-import BookCarCard from '@/app/component/BookCarCard';
+import BookCarCard from '../../../../component/BookCarCard';
 
 const ViewCarsPage = async ({ params }) => {
     const { id } = await params;

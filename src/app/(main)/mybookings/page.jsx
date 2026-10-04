@@ -3,7 +3,7 @@ import { headers } from "next/headers";
 import Nothing from "@/assets/NothingToShow.png";
 import Link from "next/link";
 import Image from "next/image";
-import DeleteBookingCar from "../component/DeleteBookingCar";
+import DeleteBookingCar from "../../../component/DeleteBookingCar";
 import { Button } from "@heroui/react";
 import { IoCalendarOutline } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";

@@ -7,8 +7,8 @@ import Nothing from "@/assets/NothingToShow.png";
 import { IoLocationOutline } from "react-icons/io5";
 import { LuUsers } from "react-icons/lu";
 import { HiOutlineArrowRight } from "react-icons/hi";
-import EditMyCarDetels from "../component/EditMyCarDetels";
-import DeleteMyAddCar from "../component/DeleteMyAddCar";
+import EditMyCarDetels from "../../../component/EditMyCarDetels";
+import DeleteMyAddCar from "../../../component/DeleteMyAddCar";
 
 const MyAddedCars = async () => {
     const session = await auth.api.getSession({
