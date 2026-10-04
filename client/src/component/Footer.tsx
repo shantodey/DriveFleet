@@ -1,16 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-
 import logo from "@/assets/Logo.png";
-
-import {
-  FaFacebookF,
-  FaLinkedinIn,
-  FaInstagram,
-  FaEnvelope,
-  FaPhoneAlt,
-} from "react-icons/fa";
-
+import {  FaFacebookF,  FaLinkedinIn,  FaInstagram,  FaEnvelope,  FaPhoneAlt,} from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
@@ -76,7 +67,7 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="mt-6 flex items-center gap-3 sm:gap-4">
               {socialLinks.map((social, index) => (
-                <a
+                <Link
                   key={index}
                   href={social.href}
                   target="_blank"
@@ -85,7 +76,7 @@ const Footer = () => {
                   className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl sm:rounded-2xl border border-white/10 bg-white/[0.03] text-white/70 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-[#C8A96B] hover:bg-[#C8A96B] hover:text-black hover:shadow-[0_0_20px_rgba(200,169,107,0.3)]"
                 >
                   {social.icon}
-                </a>
+                </Link>
               ))}
             </div>
           </div>

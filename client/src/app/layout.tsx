@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
 
     <html  lang="en"  className={cn("h-full", "scroll-smooth", inter.variable, bebas.variable, "font-sans", geist.variable)}>
-      <body className="min-h-screen bg-[#070707] font-[var(--font-inter)] text-white antialiased">
+      <body className="min-h-screen bg-[#070707] font-(--font-inter) text-white antialiased">
         <main className="flex-1">
           {children}
         </main>

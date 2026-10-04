@@ -6,10 +6,14 @@ import { GiSelfLove } from "react-icons/gi";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineAirlineSeatReclineNormal } from "react-icons/md";
 import { HiArrowRight } from "react-icons/hi";
+import { Car } from "@/types/car";
 
-const CarsCard = ({ car }) => {
+interface CarsCardProps {
+  car: Car;
+}
+
+const CarsCard = ({ car }: CarsCardProps) => {
     const { _id, imageUrl, carName, dailyRentPrice, location, category,seatCapacity } = car;
-
     return (
         <Link href={`explore-cars/${_id}`}>
             <div className="group overflow-hidden rounded-[28px] border border-white/10 bg-[#0B0B0B] transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:shadow-[0_0_40px_rgba(200,169,107,0.12)]">
