@@ -6,13 +6,11 @@ import SearchComponent from "@/component/SearchComponent";
 const gettingDataFormApi = async (q, t) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/cars?q=${q || ''}&t=${t || ''}`, { cache: "no-store" });
     const availableCars = await res.json();
-
     return availableCars;
 };
 
 const ExploreCarsPage = async ({ searchParams }) => {
     const sParams = await searchParams;
-
     const availableCars = await gettingDataFormApi(sParams.q, sParams.t);
 
     return (
