@@ -1,5 +1,5 @@
-import CarsCard from "../../../../component/CarsCard";
-import SearchComponent from "../../../../component/SearchComponent";
+import CarsCard from "@/component/CarsCard";
+import SearchComponent from "@/component/SearchComponent";
 
 
 

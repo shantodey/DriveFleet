@@ -3,7 +3,6 @@ import "./globals.css";
 
 import "swiper/css";
 
-import Navber from "../../component/Navber";
 import { Toaster } from "react-hot-toast";
 
 const inter = Inter({
@@ -28,7 +27,6 @@ export default function RootLayout({ children }) {
 
     <html  lang="en"  className={`${inter.variable} ${bebas.variable} h-full scroll-smooth`}>
       <body className="min-h-screen bg-[#070707] font-[var(--font-inter)] text-white antialiased">
-        <Navber />
         <main className="flex-1">
           {children}
         </main>
