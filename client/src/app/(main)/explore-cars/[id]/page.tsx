@@ -2,9 +2,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { MapPin, Users, Gauge, Disc } from 'lucide-react';
-
 import { getCarById } from '@/services/api';
-import BookCarCard from "@/component/BookCarCard";
+import BookCarCard from "@/components/BookCarCard";
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -15,7 +14,6 @@ interface ViewCarsPageProps {
 
 const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
     const { id } = await params;
-
     const response = await getCarById(id);
     const car = response?.data || response;
 

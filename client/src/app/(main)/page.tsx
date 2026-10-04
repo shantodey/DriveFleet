@@ -1,8 +1,8 @@
-import AboutUsPage from "@/component/AboutUs";
-import FeaturedCar from "@/component/FeaturesCar";
-import Footer from "@/component/Footer";
-import Hero from "@/component/Hero";
-import Navber from "@/component/Navber";
+import AboutUsPage from "@/components/AboutUs";
+import FeaturedCar from "@/components/FeaturesCar";
+import Footer from "@/components/Footer";
+import Hero from "@/components/Hero";
+import Navber from "@/components/Navber";
 
 
 export default function Home() {

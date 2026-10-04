@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Nothing from "@/assets/NothingToShow.png";
 import { MapPin, Users, ArrowRight } from "lucide-react";
-import EditMyCarDetels from "@/component/EditMyCarDetels";
-import DeleteMyAddCar from "@/component/DeleteMyAddCar";
+import EditMyCarDetels from "@/components/EditMyCarDetels";
+import DeleteMyAddCar from "@/components/DeleteMyAddCar";
 
 const MyAddedCars = async () => {
     const session = await auth.api.getSession({

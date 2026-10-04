@@ -1,5 +1,5 @@
-import SearchComponent from "@/component/SearchComponent";
-import CarsCard from "@/component/CarsCard";
+import SearchComponent from "@/components/SearchComponent";
+import CarsCard from "@/components/CarsCard";
 import { getCars } from "@/services/api";
 import { Car } from "@/types/car";
 
