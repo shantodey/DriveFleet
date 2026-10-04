@@ -12,16 +12,16 @@ const ExploreCarsPage = async ({ searchParams }: ExploreCarsPageProps) => {
   const availableCars: Car[] = await getCars(sParams.q, sParams.t);
 
   return (
-    <section className="min-h-screen bg-[#050505]">
-      <div className="relative overflow-hidden border-b border-white/10">
+    <section className="min-h-screen bg-background">
+      <div className="relative overflow-hidden border-b border-border">
         <div className="relative container mx-auto px-4 md:px-6 py-20 lg:py-28">
-          <p className="text-[#C8A96B] uppercase tracking-[6px] text-xs font-medium">
+          <p className="text-[#8A672A] dark:text-[#C8A96B] uppercase tracking-[6px] text-xs font-medium">
             Available Cars
           </p>
-          <h1 className="mt-5 max-w-3xl text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.95] text-white">
-            Choose Your <span className="text-[#C8A96B]">Dream Car</span>
+          <h1 className="mt-5 max-w-3xl text-5xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.95] text-foreground">
+            Choose Your <span className="text-[#8A672A] dark:text-[#C8A96B]">Dream Car</span>
           </h1>
-          <p className="mt-6 max-w-2xl text-sm md:text-base leading-8 text-gray-300">
+          <p className="mt-6 max-w-2xl text-sm md:text-base leading-8 text-muted-foreground">
             Browse our handcrafted collection of premium and exotic vehicles
             available for rent across Dhaka.
           </p>
@@ -33,7 +33,7 @@ const ExploreCarsPage = async ({ searchParams }: ExploreCarsPageProps) => {
 
       <div className="container mx-auto px-4 md:px-6 py-14">
         {availableCars.length === 0 ? (
-          <p className="text-center text-gray-400">No cars found.</p>
+          <p className="text-center text-muted-foreground">No cars found.</p>
         ) : (
           <div className="grid grid-cols-1 gap-7 md:grid-cols-2 xl:grid-cols-3">
             {availableCars.map((car) => (

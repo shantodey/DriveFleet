@@ -54,7 +54,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
       carImg: imageUrl,
       carId: _id,
       carName,
-      people: seatCapacity,
+      people: Number(seatCapacity ?? 0),
       phone: data.phone,
       message: data.message,
       driverNeeded: data.driverNeeded,
@@ -79,13 +79,13 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
         <Button
           type="button"
           variant="outline"
-          className="h-15 w-full justify-start rounded-2xl border border-white/10 bg-white/3 px-5 text-left font-normal text-white hover:bg-white/5 hover:text-white"
+          className="h-15 w-full justify-start rounded-2xl border border-border bg-background px-5 text-left font-normal text-foreground hover:bg-muted hover:text-foreground"
         >
           {value || "Select date"}
         </Button>
       </PopoverTrigger>
 
-      <PopoverContent className="w-auto border-white/10 bg-[#111] p-0">
+      <PopoverContent className="w-auto border-border bg-popover p-0">
         <Calendar
           mode="single"
           selected={value ? new Date(value) : undefined}
@@ -100,27 +100,27 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="h-15 w-full rounded-2xl border border-white/10 bg-white px-6 text-sm font-black uppercase tracking-[3px] text-black transition-all duration-300 hover:scale-[1.01] hover:bg-[#f5f5f5] active:scale-[0.99]">
+        <Button className="h-15 w-full rounded-2xl border border-[#b89b65]/30 bg-[#b89b65] px-6 text-sm font-black uppercase tracking-[3px] text-black transition-all duration-300 hover:scale-[1.01] hover:bg-[#d2b578] active:scale-[0.99]">
           Book This Vehicle
         </Button>
       </DialogTrigger>
 
-      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-[34px] border border-white/10 bg-linear-to-b from-[#111111] to-[#090909] p-0 text-white shadow-[0_0_60px_rgba(0,0,0,0.45)] sm:max-w-3xl">
-        <div className="border-b border-white/5 px-7 py-7 md:px-9">
+      <DialogContent className="max-h-[90vh] overflow-y-auto rounded-[34px] border border-border bg-card p-0 text-foreground shadow-xl sm:max-w-3xl">
+        <div className="border-b border-border px-7 py-7 md:px-9">
           <div className="flex items-start justify-between gap-5">
             <div className="flex items-center gap-5">
-              <div className="flex h-18 w-18 items-center justify-center rounded-3xl border border-[#b89b65]/10 bg-[#b89b65]/5 text-[#d6bb84]">
+              <div className="flex h-18 w-18 items-center justify-center rounded-3xl border border-[#b89b65]/20 bg-[#b89b65]/10 text-[#8A672A] dark:text-[#d6bb84]">
                 <BsEnvelopePaper size={28} />
               </div>
 
               <div>
-                <p className="text-xs uppercase tracking-[5px] text-[#b89b65]">
+                <p className="text-xs uppercase tracking-[5px] text-[#8A672A] dark:text-[#b89b65]">
                   Luxury Reservation
                 </p>
-                <h2 className="mt-2 text-3xl font-black text-white">
+                <h2 className="mt-2 text-3xl font-black text-foreground">
                   Book {carName}
                 </h2>
-                <p className="mt-3 max-w-xl text-sm leading-7 text-gray-400">
+                <p className="mt-3 max-w-xl text-sm leading-7 text-muted-foreground">
                   Complete your reservation details and confirm your premium vehicle booking.
                 </p>
               </div>
@@ -129,54 +129,54 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
         </div>
 
         <div className="p-6 md:p-8">
-          <div className="rounded-[30px] border border-white/5 bg-white/2 p-5 md:p-7">
+          <div className="rounded-[30px] border border-border bg-background p-5 md:p-7">
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-7">
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <Label className="mb-3 block text-xs uppercase tracking-[4px] text-gray-500">
+                  <Label className="mb-3 block text-xs uppercase tracking-[4px] text-muted-foreground">
                     Full Name
                   </Label>
                   <Input
                     {...register("name", { required: true })}
                     placeholder="Enter your name"
-                    className="h-15 rounded-2xl border border-white/10 bg-white/3 px-5 text-white placeholder:text-gray-500"
+                    className="h-15 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
 
                 <div>
-                  <Label className="mb-3 block text-xs uppercase tracking-[4px] text-gray-500">
+                  <Label className="mb-3 block text-xs uppercase tracking-[4px] text-muted-foreground">
                     Email Address
                   </Label>
                   <Input
                     {...register("email", { required: true })}
                     placeholder="Enter your email"
-                    className="h-15 rounded-2xl border border-white/10 bg-white/3 px-5 text-white placeholder:text-gray-500"
+                    className="h-15 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
 
                 <div className="md:col-span-2">
-                  <Label className="mb-3 block text-xs uppercase tracking-[4px] text-gray-500">
+                  <Label className="mb-3 block text-xs uppercase tracking-[4px] text-muted-foreground">
                     Phone Number
                   </Label>
                   <Input
                     {...register("phone", { required: true })}
                     placeholder="Enter your phone number"
-                    className="h-15 rounded-2xl border border-white/10 bg-white/3 px-5 text-white placeholder:text-gray-500"
+                    className="h-15 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-                <div className="rounded-[28px] border border-white/5 bg-white/2 p-5">
+                <div className="rounded-[28px] border border-border bg-card p-5">
                   <div className="mb-5 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/3 text-[#d6bb84]">
                       <IoCalendarOutline size={20} />
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-[3px] text-gray-500">
+                      <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
                         Rental Start
                       </p>
-                      <h3 className="mt-1 text-base font-bold text-white">
+                      <h3 className="mt-1 text-base font-bold text-foreground">
                         Start Date
                       </h3>
                     </div>
@@ -192,16 +192,16 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                   />
                 </div>
 
-                <div className="rounded-[28px] border border-white/5 bg-white/2 p-5">
+                <div className="rounded-[28px] border border-border bg-card p-5">
                   <div className="mb-5 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/3 text-[#d6bb84]">
                       <IoCalendarOutline size={20} />
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-[3px] text-gray-500">
+                      <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
                         Rental Return
                       </p>
-                      <h3 className="mt-1 text-base font-bold text-white">
+                      <h3 className="mt-1 text-base font-bold text-foreground">
                         End Date
                       </h3>
                     </div>
@@ -218,20 +218,20 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                 </div>
               </div>
 
-              <div className="rounded-[28px] border border-white/5 bg-white/2 p-6">
+              <div className="rounded-[28px] border border-border bg-card p-6">
                 <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/3 text-[#d6bb84]">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-[#8A672A] dark:text-[#d6bb84]">
                       <LuUsers size={20} />
                     </div>
                     <div>
-                      <p className="text-xs uppercase tracking-[3px] text-gray-500">
+                      <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
                         Driver Service
                       </p>
-                      <h3 className="mt-1 text-lg font-bold text-white">
+                      <h3 className="mt-1 text-lg font-bold text-foreground">
                         Need A Professional Driver?
                       </h3>
-                      <p className="mt-2 text-sm leading-7 text-gray-400">
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">
                         Select whether you want a personal chauffeur during your trip.
                       </p>
                     </div>
@@ -244,7 +244,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                         className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-5 py-4 transition-all duration-300 ${
                           driverOption === option
                             ? "border-[#b89b65]/20 bg-[#b89b65]/10 text-[#d6bb84]"
-                            : "border-white/10 bg-white/2 text-gray-300"
+                            : "border-border bg-background text-foreground"
                         }`}
                       >
                         <input
@@ -270,22 +270,22 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
               </div>
 
               <div>
-                <Label className="mb-3 block text-xs uppercase tracking-[4px] text-gray-500">
+                <Label className="mb-3 block text-xs uppercase tracking-[4px] text-muted-foreground">
                   Additional Message
                 </Label>
                 <Textarea
                   {...register("message")}
                   placeholder="Special requests, pickup instructions or luxury preferences..."
-                  className="min-h-35 rounded-3xl border border-white/10 bg-white/3 px-5 py-4 text-white placeholder:text-gray-500"
+                  className="min-h-35 rounded-3xl border border-input bg-card px-5 py-4 text-foreground placeholder:text-muted-foreground"
                 />
               </div>
 
-              <div className="flex flex-col gap-4 border-t border-white/5 pt-7 sm:flex-row sm:justify-end">
+              <div className="flex flex-col gap-4 border-t border-border pt-7 sm:flex-row sm:justify-end">
                 <DialogClose asChild>
                   <Button
                     type="button"
                     variant="outline"
-                    className="h-14 rounded-2xl border border-white/10 bg-white/6 px-7 text-xs font-bold uppercase tracking-[3px] text-gray-300 hover:bg-white/10 hover:text-white"
+                    className="h-14 rounded-2xl border border-border bg-background px-7 text-xs font-bold uppercase tracking-[3px] text-foreground hover:bg-muted hover:text-foreground"
                   >
                     Cancel
                   </Button>
@@ -294,7 +294,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="h-14 rounded-2xl border border-[#b89b65]/10 bg-[#b89b65]/10 px-8 text-xs font-bold uppercase tracking-[3px] text-[#d6bb84] hover:bg-[#b89b65]/20 disabled:opacity-50"
+                  className="h-14 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-8 text-xs font-bold uppercase tracking-[3px] text-[#8A672A] hover:bg-[#b89b65]/20 dark:text-[#d6bb84] disabled:opacity-50"
                 >
                   <HiOutlineSparkles size={18} />
                   <span>

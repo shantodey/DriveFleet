@@ -15,11 +15,11 @@ const STATS = [
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen w-full overflow-hidden bg-black">
+    <section className="relative min-h-screen w-full overflow-hidden bg-background">
       {/* Background Image & Overlays */}
       <Image  src={heroimg}  alt="Luxury Car"  fill  priority  sizes="100vw"  className="object-cover object-center scale-105"/>
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-black/40" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-[#0B0B0B] to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/50 dark:from-black dark:via-black/70 dark:to-black/40" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent dark:from-[#0B0B0B]" />
 
       {/* Main Content */}
       <div className="relative z-10 flex min-h-screen items-center px-6 sm:px-10 lg:px-20">
@@ -28,15 +28,15 @@ const Hero = () => {
             
             {/* Left Content */}
             <div className="max-w-2xl pt-24 lg:pt-0">
-              <p className="mb-6 text-[12px] font-medium uppercase tracking-[0.35em] text-[#C8A96B]">
+              <p className="mb-6 text-[12px] font-medium uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B]">
                 Premium Exotic Rentals
               </p>
               
-              <h1 className="text-white text-5xl sm:text-6xl lg:text-8xl font-black uppercase leading-[0.95] tracking-tight">
+              <h1 className="text-foreground text-5xl sm:text-6xl lg:text-8xl font-black uppercase leading-[0.95] tracking-tight">
                 Drive <br /> Without <br /> Limits.
               </h1>
               
-              <p className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-white/65">
+              <p className="mt-8 max-w-xl text-base sm:text-lg leading-relaxed text-foreground/70">
                 Discover world-class luxury and exotic vehicles for every
                 occasion. Instant booking, transparent pricing, and a premium
                 driving experience tailored for Dhaka.
@@ -54,7 +54,7 @@ const Hero = () => {
                 
                 <Link
                   href="/addcar"
-                  className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/5 backdrop-blur-xl px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:border-[#C8A96B] hover:text-[#C8A96B] hover:bg-white/10"
+                  className="inline-flex items-center gap-3 rounded-full border border-border bg-card/60 backdrop-blur-xl px-8 py-4 text-sm font-bold uppercase tracking-[0.15em] text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:text-[#8A672A] dark:hover:text-[#C8A96B] hover:bg-card"
                 >
                   List Your Car
                 </Link>
@@ -63,27 +63,27 @@ const Hero = () => {
 
             {/* Right Stats Card */}
             <div className="hidden lg:flex justify-end">
-              <div className="w-[320px] rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
+              <div className="w-[320px] rounded-3xl border border-border bg-card/80 backdrop-blur-2xl p-8 shadow-xl dark:border-white/10 dark:bg-white/5 dark:shadow-[0_8px_40px_rgba(0,0,0,0.5)]">
                 <div className="space-y-8">
                   {STATS.map((stat, idx) => {
                     const Icon = stat.icon;
                     return (
                       <div key={idx}>
                         <div className="flex items-center gap-5">
-                          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#C8A96B]/10 text-[#C8A96B]">
+                          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#C8A96B]/10 text-[#8A672A] dark:text-[#C8A96B]">
                             <Icon className="text-2xl" />
                           </div>
                           <div>
-                            <h3 className="text-3xl font-bold text-white">
+                            <h3 className="text-3xl font-bold text-foreground">
                               {stat.value}
                             </h3>
-                            <p className="text-sm text-white/60">
+                            <p className="text-sm text-muted-foreground">
                               {stat.label}
                             </p>
                           </div>
                         </div>
                         {idx !== STATS.length - 1 && (
-                          <div className="mt-8 h-px w-full bg-white/10" />
+                          <div className="mt-8 h-px w-full bg-border" />
                         )}
                       </div>
                     );

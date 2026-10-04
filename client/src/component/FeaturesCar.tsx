@@ -8,7 +8,7 @@ const FeaturedCar = async () => {
   }
 
   return (
-    <section className="relative overflow-hidden bg-[#0B0B0B] py-28">
+    <section className="relative overflow-hidden bg-background py-28">
       <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-[#C8A96B]/10 blur-[140px]" />
       <div className="relative container mx-auto px-4">
         <FeaturedCarSlider cars={cars.slice(0, 6)} />

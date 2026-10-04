@@ -25,11 +25,11 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
         <div>
           <Badge
             variant="outline"
-            className="mb-4 border-[#C8A96B]/30 bg-[#C8A96B]/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.35em] text-[#C8A96B]"
+            className="mb-4 border-[#C8A96B]/30 bg-[#C8A96B]/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B]"
           >
             Our Premium Fleet
           </Badge>
-          <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl">
+          <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
             Featured Cars
           </h2>
         </div>
@@ -37,7 +37,7 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
         <Button
           asChild
           variant="link"
-          className="inline-flex items-center gap-3 p-0 text-sm font-semibold uppercase tracking-[0.2em] text-[#C8A96B] transition-all duration-300 hover:translate-x-1 hover:no-underline"
+          className="inline-flex items-center gap-3 p-0 text-sm font-semibold uppercase tracking-[0.2em] text-[#8A672A] transition-all duration-300 hover:translate-x-1 hover:no-underline dark:text-[#C8A96B]"
         >
           <Link href="/explore-cars">
             View All Cars
@@ -63,7 +63,7 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
       >
         {cars.map((car) => (
           <SwiperSlide key={car._id}>
-            <Card className="group overflow-hidden rounded-[30px] border-white/10 bg-white/[0.03] p-0 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-[#C8A96B]/40 hover:shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+            <Card             className="group overflow-hidden rounded-[30px] border-border bg-card p-0 backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-[#C8A96B]/40 hover:shadow-xl">
               {/* Image & Type Badge */}
               <div className="relative overflow-hidden">
                 <Image
@@ -84,11 +84,11 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
               <CardContent className="p-6">
                 <div className="mb-5 flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-white">
+                    <h3 className="text-2xl font-bold text-foreground">
                       {car.carName}
                     </h3>
 
-                    <div className="mt-2 flex items-center gap-2 text-white/50">
+                    <div className="mt-2 flex items-center gap-2 text-muted-foreground">
                       <FaLocationDot className="text-[#C8A96B]" />
                       <p className="text-sm">{car.location || "Dhaka"}</p>
                     </div>
@@ -100,9 +100,9 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
                 </div>
 
                 {/* Footer Price & Rent Action */}
-                <div className="flex items-center justify-between border-t border-white/10 pt-5">
+                <div className="flex items-center justify-between border-t border-border pt-5">
                   <div>
-                    <p className="text-3xl font-black text-[#C8A96B]">
+                    <p className="text-3xl font-black text-[#8A672A] dark:text-[#C8A96B]">
                       ${car.dailyRentPrice}
                     </p>
                     <p className="text-sm text-white/40">per day</p>
@@ -111,7 +111,7 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
                   <Button
                     asChild
                     variant="outline"
-                    className="rounded-full border-white/10 bg-transparent px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-all duration-300 hover:border-[#C8A96B] hover:bg-[#C8A96B] hover:text-black"
+                    className="rounded-full border-border bg-transparent px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-[#C8A96B] hover:text-black"
                   >
                     <Link href={`/cars/${car._id}`}>Rent Now</Link>
                   </Button>

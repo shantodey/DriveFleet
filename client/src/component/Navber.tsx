@@ -10,6 +10,7 @@ import logo from "@/assets/Logo.png";
 import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import ThemeToggle from "@/component/ThemeToggle";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -42,13 +43,13 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="fixed left-0 top-0 z-50 w-full px-4 pt-4 md:px-8">
-      <div className="relative mx-auto grid h-20 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center rounded-2xl border border-white/10 bg-black/30 px-4 shadow-[0_8px_32px_rgba(0,0,0,0.45)] backdrop-blur-2xl sm:px-6 lg:px-10">
-        <div className="pointer-events-none absolute inset-0 rounded-2xl border border-white/5" />
+      <div className="relative mx-auto grid h-20 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center rounded-2xl border border-border bg-background/85 px-4 shadow-lg backdrop-blur-2xl dark:border-white/10 dark:bg-black/30 sm:px-6 lg:px-10">
+        <div className="pointer-events-none absolute inset-0 rounded-2xl border border-border/50 dark:border-white/5" />
 
         <div className="flex items-center justify-start gap-3">
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] text-white transition-all duration-300 hover:border-[#C8A96B]/40 hover:text-[#C8A96B] md:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 hover:text-[#C8A96B] md:hidden"
             aria-label="Toggle Menu"
           >
             {isOpen ? <RxCross1 className="size-5" /> : <RxHamburgerMenu className="size-5" />}
@@ -69,7 +70,7 @@ const Navbar: React.FC = () => {
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className="relative text-[13px] font-medium uppercase tracking-[0.18em] text-white/80 no-underline transition-all duration-300 hover:text-[#C8A96B] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C8A96B] after:transition-all after:duration-300 hover:after:w-full"
+                  className="relative text-[13px] font-medium uppercase tracking-[0.18em] text-foreground/80 no-underline transition-all duration-300 hover:text-[#9A742F] dark:hover:text-[#C8A96B] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C8A96B] after:transition-all after:duration-300 hover:after:w-full"
                 >
                   {link.name}
                 </Link>
@@ -79,11 +80,12 @@ const Navbar: React.FC = () => {
         </div>
 
         <div className="flex items-center justify-end gap-3">
+          <ThemeToggle />
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={
-                  <button className="cursor-pointer rounded-full ring-2 ring-white/10 transition-all duration-300 hover:ring-[#C8A96B] focus:outline-none">
+                  <button className="cursor-pointer rounded-full ring-2 ring-border transition-all duration-300 hover:ring-[#C8A96B] focus:outline-none">
                     <Avatar className="h-10 w-10">
                       <AvatarImage alt={user?.name ?? "User"} src={user?.image ?? undefined} />
                       <AvatarFallback>{user?.name?.charAt(0) ?? "U"}</AvatarFallback>
@@ -94,7 +96,7 @@ const Navbar: React.FC = () => {
               >
               </DropdownMenuTrigger>
 
-              <DropdownMenuContent className="w-56 rounded-2xl border border-white/10 bg-black/90 p-2 text-white shadow-2xl backdrop-blur-2xl">
+              <DropdownMenuContent className="w-56 rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-2xl backdrop-blur-2xl">
                 <DropdownMenuLabel className="font-normal">
                   <div className="flex items-center gap-3 px-2 py-1.5">
                     <Avatar className="h-8 w-8">
@@ -103,31 +105,31 @@ const Navbar: React.FC = () => {
                     </Avatar>
 
                     <div className="flex flex-col">
-                      <p className="text-sm font-medium leading-none text-white">{user?.name}</p>
-                      <p className="max-w-36 truncate text-xs text-white/50">{user?.email}</p>
+                      <p className="text-sm font-medium leading-none text-foreground">{user?.name}</p>
+                      <p className="max-w-36 truncate text-xs text-muted-foreground">{user?.email}</p>
                     </div>
                   </div>
                 </DropdownMenuLabel>
 
-                <DropdownMenuSeparator className="bg-white/10" />
+                <DropdownMenuSeparator className="bg-border" />
 
-                <DropdownMenuItem  className="cursor-pointer focus:bg-white/10 focus:text-white"
+                <DropdownMenuItem  className="cursor-pointer focus:bg-accent focus:text-accent-foreground"
                 render={
-                  <Link href="/mycars" className="w-full text-white">
+                  <Link href="/mycars" className="w-full text-foreground">
                     My Added Cars
                   </Link>
                 }>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem  className="cursor-pointer focus:bg-white/10 focus:text-white"
+                <DropdownMenuItem  className="cursor-pointer focus:bg-accent focus:text-accent-foreground"
                 render={
-                  <Link href="/mybookings" className="w-full text-white">
+                  <Link href="/mybookings" className="w-full text-foreground">
                     My Bookings
                   </Link>
                 }>
                 </DropdownMenuItem>
 
-                <DropdownMenuItem className="cursor-pointer focus:bg-white/10 focus:text-white">
+                <DropdownMenuItem className="cursor-pointer focus:bg-accent focus:text-accent-foreground">
                   <div className="flex w-full items-center justify-between">
                     <span>Settings</span>
                     <FaGear className="size-4 text-[#C8A96B]" />
@@ -156,7 +158,7 @@ const Navbar: React.FC = () => {
               </Button>
 
               <Button  variant="outline"
-                className="hidden rounded-full border-white/20 bg-transparent px-4 text-sm text-white transition-all duration-300 hover:border-[#C8A96B] hover:bg-transparent hover:text-[#C8A96B] sm:block sm:px-6"
+                className="hidden rounded-full border-border bg-transparent px-4 text-sm text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B] sm:block sm:px-6"
               render={
                 <Link href="/register">Register</Link>
               }
@@ -168,16 +170,16 @@ const Navbar: React.FC = () => {
       </div>
 
       {isOpen && (
-        <div className="mt-3 flex flex-col gap-5 rounded-3xl border border-white/10 bg-black/90 px-6 py-6 shadow-[0_10px_50px_rgba(0,0,0,0.6)] backdrop-blur-2xl md:hidden">
+        <div className="mt-3 flex flex-col gap-5 rounded-3xl border border-border bg-background/95 px-6 py-6 shadow-xl backdrop-blur-2xl md:hidden">
           {navLinks.map((link) => (
             <Link  key={link.name}  href={link.href}  onClick={() => setIsOpen(false)}
-              className="text-sm uppercase tracking-[0.18em] text-white/80 no-underline transition-all duration-300 hover:text-[#C8A96B]">
+              className="text-sm uppercase tracking-[0.18em] text-foreground/80 no-underline transition-all duration-300 hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
               {link.name}
             </Link>
           ))}
 
           {!user && (
-            <div className="flex flex-col gap-4 border-t border-white/10 pt-5">
+            <div className="flex flex-col gap-4 border-t border-border pt-5">
               <Button
                 className="w-full rounded-full bg-[#C8A96B] py-6 font-semibold text-black hover:bg-[#C8A96B]/90"
               render={
@@ -188,7 +190,7 @@ const Navbar: React.FC = () => {
               </Button>
 
               <Button variant="outline"
-                className="w-full rounded-full border-white/20 bg-transparent py-6 text-white hover:border-[#C8A96B] hover:bg-transparent hover:text-[#C8A96B]"
+                className="w-full rounded-full border-border bg-transparent py-6 text-foreground hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]"
                 render={
                 <Link href="/register" onClick={() => setIsOpen(false)}>
                   Register

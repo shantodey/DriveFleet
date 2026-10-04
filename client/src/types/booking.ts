@@ -2,7 +2,11 @@ export interface Car {
   _id: string;
   carName: string;
   imageUrl: string;
-  seatCapacity: number;
+  seatCapacity?: number;
+  carType?: string;
+  location?: string;
+  availabilityStatus?: string;
+  dailyRentPrice?: number;
 }
 
 export interface BookCarCardProps {

@@ -4,7 +4,15 @@ import { AlertDialog, Button } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 import toast from 'react-hot-toast';
 import { GoTrash } from 'react-icons/go';
-const DeleteMyAddCar = ({ car }) => {
+
+type DeleteMyAddCarProps = {
+    car: {
+        _id: string;
+        carName: string;
+    };
+};
+
+const DeleteMyAddCar = ({ car }: DeleteMyAddCarProps) => {
     const { _id, carName } = car;
 
     const router = useRouter();
@@ -48,9 +56,9 @@ const DeleteMyAddCar = ({ car }) => {
 
                 <AlertDialog.Container>
 
-                    <AlertDialog.Dialog className="overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-b from-[#111111] to-[#090909] p-0 shadow-[0_0_60px_rgba(0,0,0,0.45)] sm:max-w-[500px]">
+                    <AlertDialog.Dialog className="overflow-hidden rounded-[32px] border border-border bg-card p-0 text-foreground shadow-xl sm:max-w-[500px]">
 
-                        <div className="border-b border-white/5 px-8 py-7">
+                        <div className="border-b border-border px-8 py-7">
 
                             <div className="flex items-start justify-between gap-4">
 
@@ -66,7 +74,7 @@ const DeleteMyAddCar = ({ car }) => {
                                             Dangerous Action
                                         </p>
 
-                                        <h2 className="mt-2 text-2xl font-black text-white">
+                                        <h2 className="mt-2 text-2xl font-black text-foreground">
                                             Delete Booking?
                                         </h2>
 
@@ -74,7 +82,7 @@ const DeleteMyAddCar = ({ car }) => {
 
                                 </div>
 
-                                <AlertDialog.CloseTrigger className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/5 bg-white/[0.03] text-gray-400 transition-all duration-300 hover:bg-white/[0.05] hover:text-white" />
+                                <AlertDialog.CloseTrigger className="flex h-11 w-11 items-center justify-center rounded-2xl border border-border bg-background text-muted-foreground transition-all duration-300 hover:bg-muted hover:text-foreground" />
 
                             </div>
 
@@ -82,11 +90,11 @@ const DeleteMyAddCar = ({ car }) => {
 
                         <div className="px-8 py-7">
 
-                            <div className="rounded-3xl border border-white/5 bg-white/[0.02] p-6">
+                            <div className="rounded-3xl border border-border bg-background p-6">
 
-                                <p className="text-sm leading-8 text-gray-400">
+                                <p className="text-sm leading-8 text-muted-foreground">
                                     You are about to permanently remove the booking for
-                                    <span className="mx-1 font-bold text-white">
+                                    <span className="mx-1 font-bold text-foreground">
                                         {carName}
                                     </span>
                                     from your reservation history.
@@ -100,11 +108,11 @@ const DeleteMyAddCar = ({ car }) => {
 
                         </div>
 
-                        <div className="flex flex-col gap-4 border-t border-white/5 px-8 py-6 sm:flex-row sm:justify-end">
+                        <div className="flex flex-col gap-4 border-t border-border px-8 py-6 sm:flex-row sm:justify-end">
 
                             <Button
                                 slot="close"
-                                className="h-13 rounded-2xl border border-white/10 bg-white/[0.03] px-7 text-xs font-bold uppercase tracking-[3px] text-gray-300 transition-all duration-300 hover:bg-white/[0.06]"
+                                className="h-13 rounded-2xl border border-border bg-background px-7 text-xs font-bold uppercase tracking-[3px] text-foreground transition-all duration-300 hover:bg-muted"
                             >
                                 Cancel
                             </Button>
@@ -130,4 +138,3 @@ const DeleteMyAddCar = ({ car }) => {
 };
 
 export default DeleteMyAddCar;
-
