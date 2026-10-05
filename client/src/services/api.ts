@@ -45,9 +45,10 @@ export const getCarById = async (id: string, token?: string) => {
       headers: getJsonHeaders(token),
       cache: "no-store",
     });
-
-    if (!res.ok) return null;
-
+    if (!res.ok) {
+      console.error("getCarById failed:", res.status);
+      return null;
+    }
     return await res.json();
   } catch (error) {
     console.error("Error fetching car details:", error);

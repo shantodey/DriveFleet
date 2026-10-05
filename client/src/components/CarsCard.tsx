@@ -6,17 +6,19 @@ import { Heart, MapPin, Armchair, ArrowRight } from "lucide-react";
 import { Car } from "@/types/car";
 
 interface CarsCardProps {
-  car: Car;
+    car: Car;
 }
 
 const CarsCard = ({ car }: CarsCardProps) => {
     const { _id, imageUrl, carName, dailyRentPrice, location, category, seatCapacity } = car;
+
+    
     return (
         <Link href={`explore-cars/${_id}`}>
             <div className="group overflow-hidden rounded-[28px] border border-border bg-card transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:shadow-lg">
 
                 <div className="relative h-70 overflow-hidden">
-                    <Image  src={imageUrl}  alt={carName}  fill className="object-cover transition-transform duration-700 group-hover:scale-110"/>
+                    <Image src={imageUrl} alt={carName} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
 
                     <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
 
@@ -60,20 +62,15 @@ const CarsCard = ({ car }: CarsCardProps) => {
                 <div className="border-t border-border bg-card px-5 py-5">
                     <div className="flex items-end justify-between">
                         <div>
-                            <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
-                                Daily Rental
-                            </p>
+                            <p className="text-xs uppercase tracking-[3px] text-muted-foreground">   Daily Rental</p>
 
                             <div className="mt-2 flex items-end gap-1">
                                 <span className="text-lg font-medium text-[#C8A96B]">$</span>
-
                                 <span className="text-3xl font-black text-foreground">
                                     {dailyRentPrice}
                                 </span>
 
-                                <span className="mb-1 text-sm text-muted-foreground">
-                                    /day
-                                </span>
+                                <span className="mb-1 text-sm text-muted-foreground"> /day </span>
                             </div>
                         </div>
 

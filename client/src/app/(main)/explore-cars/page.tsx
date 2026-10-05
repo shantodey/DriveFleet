@@ -10,7 +10,7 @@ interface ExploreCarsPageProps {
 const ExploreCarsPage = async ({ searchParams }: ExploreCarsPageProps) => {
   const sParams = await searchParams;
   const availableCars: Car[] = await getCars(sParams.q, sParams.t);
-
+  
   return (
     <section className="min-h-screen bg-background">
       <div className="relative overflow-hidden border-b border-border">

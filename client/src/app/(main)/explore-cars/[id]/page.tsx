@@ -7,23 +7,22 @@ import BookCarCard from "@/components/BookCarCard";
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 interface ViewCarsPageProps {
     params: Promise<{ id: string }>;
 }
 
 const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
-    const { id } = await params;
-    const response = await getCarById(id);
-    const car = response?.data || response;
 
-    if (!car || !car._id) {
-        return (
-            <div className="flex min-h-screen items-center justify-center bg-background text-foreground">
-                <p>Car not found.</p>
-            </div>
-        );
-    }
+    const { id } = await params;
+    const { token } = await auth.api.getToken({
+        headers: await headers(),
+    });
+    const response = await getCarById(id, token);
+    const car = response?.data || response;
+    console.log(car);
 
     const {
         carName = "Unknown Car",
@@ -40,7 +39,7 @@ const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
         <section className="min-h-screen bg-background text-foreground">
             <div className="relative overflow-hidden border-b border-border">
                 <div className="absolute inset-0">
-                    <Image src={imageUrl} alt={carName} fill priority className="object-cover opacity-25 blur-[2px]" />
+                    <Image src={response.imageUrl} alt={carName} fill priority className="object-cover opacity-25 blur-[2px]" />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-background/40 to-background dark:from-black/60 dark:via-black/85 dark:to-[#050505]" />
                 </div>
 
