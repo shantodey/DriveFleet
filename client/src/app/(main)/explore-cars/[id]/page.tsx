@@ -17,13 +17,17 @@ interface ViewCarsPageProps {
 const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
 
     const { id } = await params;
-    const { token } = await auth.api.getToken({
+
+    const session = await auth.api.getSession({
         headers: await headers(),
     });
+
+    const token = session?.session?.token;
+
     const response = await getCarById(id, token);
     const car = response?.data || response;
-    console.log(car);
 
+    console.log(car);
     const {
         carName = "Unknown Car",
         imageUrl = "/placeholder.jpg",
