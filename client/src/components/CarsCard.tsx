@@ -1,0 +1,87 @@
+'use client';
+
+import Image from "next/image";
+import Link from "next/link";
+import { Heart, MapPin, Armchair, ArrowRight } from "lucide-react";
+import { Car } from "@/types/car";
+
+interface CarsCardProps {
+    car: Car;
+}
+
+const CarsCard = ({ car }: CarsCardProps) => {
+    const { _id, imageUrl, carName, dailyRentPrice, location, category, seatCapacity } = car;
+
+    
+    return (
+        <Link href={`explore-cars/${_id}`}>
+            <div className="group overflow-hidden rounded-[28px] border border-border bg-card transition-all duration-500 hover:-translate-y-2 hover:border-[#C8A96B]/40 hover:shadow-lg">
+
+                <div className="relative h-70 overflow-hidden">
+                    <Image src={imageUrl} alt={carName} fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
+
+                    <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-transparent" />
+
+                    <div className="absolute left-4 top-4">
+                        <span className="rounded-full border border-[#C8A96B]/30 bg-[#C8A96B]/10 px-4 py-1 text-[11px] font-semibold uppercase tracking-[2px] text-[#8A672A] backdrop-blur-md dark:text-[#E5C98B]">
+                            {category || "Luxury"}
+                        </span>
+                    </div>
+
+                    <button className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-black/40 text-white backdrop-blur-md transition-all duration-300 hover:border-red-500/40 hover:text-red-500">
+                        <Heart size={16} />
+                    </button>
+
+                    <div className="absolute bottom-0 left-0 w-full p-5">
+                        <div className="flex items-end justify-between">
+                            <div>
+                                <h2 className="text-2xl font-bold text-white">
+                                    {carName}
+                                </h2>
+
+                                <div className="mt-3 flex items-center gap-4 text-sm text-gray-200">
+                                    <div className="flex items-center gap-1.5">
+                                        <Armchair size={16} />
+                                        <span>{seatCapacity} Seats</span>
+                                    </div>
+
+                                    <div className="flex items-center gap-1.5">
+                                        <MapPin size={16} />
+                                        <span>{location || "Dhaka"}</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#C8A96B] text-black transition-transform duration-300 group-hover:translate-x-1">
+                                <ArrowRight size={18} />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="border-t border-border bg-card px-5 py-5">
+                    <div className="flex items-end justify-between">
+                        <div>
+                            <p className="text-xs uppercase tracking-[3px] text-muted-foreground">   Daily Rental</p>
+
+                            <div className="mt-2 flex items-end gap-1">
+                                <span className="text-lg font-medium text-[#C8A96B]">$</span>
+                                <span className="text-3xl font-black text-foreground">
+                                    {dailyRentPrice}
+                                </span>
+
+                                <span className="mb-1 text-sm text-muted-foreground"> /day </span>
+                            </div>
+                        </div>
+
+                        <div className="rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[2px] text-emerald-400">
+                            Available
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Link>
+    );
+};
+
+export default CarsCard;
