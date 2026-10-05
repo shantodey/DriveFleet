@@ -10,6 +10,8 @@ interface ExploreCarsPageProps {
 const ExploreCarsPage = async ({ searchParams }: ExploreCarsPageProps) => {
   const sParams = await searchParams;
   const availableCars: Car[] = await getCars(sParams.q, sParams.t);
+  console.log(availableCars);
+  
   
   return (
     <section className="min-h-screen bg-background">

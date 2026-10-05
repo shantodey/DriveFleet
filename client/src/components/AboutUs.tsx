@@ -28,18 +28,13 @@ const AboutUsPage = () => {
   return (
     <section className="relative overflow-hidden bg-background py-28 px-6 text-foreground">
       {/* Background Glow */}
-      <div className="absolute left-1/2 top-0 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-[#C8A96B]/10 blur-[140px]" />
+      <div className="absolute left-1/2 top-0 h-125 w-200 -translate-x-1/2 rounded-full bg-[#C8A96B]/10 blur-[140px]" />
 
       <div className="relative container mx-auto max-w-7xl">
         {/* Header Content */}
         <div className="mb-20 max-w-3xl">
-          <Badge
-            variant="outline"
-            className="mb-5 border-[#C8A96B]/30 bg-[#C8A96B]/10 text-[12px] uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B] px-4 py-1.5 rounded-full"
-          >
-            Luxury Experience
-          </Badge>
-
+          <p className="mb-5  text-[12px] uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B] px-4 py-1.5 rounded-full">
+           Luxury Experience</p>
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[0.95] tracking-tight text-foreground">
             Exotic Car Rental <br />
             Experience In Dhaka

@@ -8,14 +8,18 @@ import { authClient } from "@/lib/auth-client";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import ThemeToggle from "@/components/ThemeToggle";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem , DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
-import { LogOut, Menu, Settings, X } from "lucide-react";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger, DropdownMenuGroup } from "@/components/ui/dropdown-menu";
+import { BadgeCheckIcon, BellIcon, CarFront, CreditCardIcon, LogOutIcon, MapPinned, Menu, X } from "lucide-react";
 
 interface NavLink {
   name: string;
   href: string;
 }
-
+interface Dropdown {
+  name: string;
+  href: string;
+  icon: React.ElementType,
+}
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -31,19 +35,20 @@ const Navbar: React.FC = () => {
     { name: "Explore Cars", href: "/explore-cars" },
     { name: "Add Car", href: "/addcar" },
   ];
+  const dropDownLinks: Dropdown[] = [
+    { name: "Profile", href: "/", icon: BadgeCheckIcon },
+    { name: "My Cars", href: "/mycars", icon: BadgeCheckIcon },
+    { name: "My Booking", href: "/mybookings", icon: MapPinned },
+  ];
 
   return (
     <nav className="fixed left-0 top-0 z-50 w-full px-4 pt-4 md:px-8">
-      <div className="relative mx-auto grid h-20 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center rounded-2xl border border-border bg-background/85 px-4 shadow-lg backdrop-blur-2xl dark:border-white/10 dark:bg-black/30 sm:px-6 lg:px-10">
+      <div className="relative mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_1fr_auto] items-center rounded-2xl border border-border bg-background/85 px-4 shadow-lg backdrop-blur-2xl dark:border-white/10 dark:bg-black/30 sm:px-6 lg:px-10 md:grid-cols-[1fr_auto_1fr]">
         <div className="pointer-events-none absolute inset-0 rounded-2xl border border-border/50 dark:border-white/5" />
 
         <div className="flex items-center justify-start gap-3">
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 hover:text-[#C8A96B] md:hidden"
-            aria-label="Toggle Menu"
-          >
-            {isOpen ? <X className="size-5" /> : <Menu  className="size-5" />}
+          <button onClick={() => setIsOpen(!isOpen)} className="flex h-10 w-10 items-center justify-center rounded-xl border border-border bg-card text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 hover:text-[#C8A96B] md:hidden" aria-label="Toggle Menu">
+            {isOpen ? <X className="size-5" /> : <Menu className="size-5" />}
           </button>
 
           <Link href="/" className="hidden items-center no-underline md:flex">
@@ -59,10 +64,7 @@ const Navbar: React.FC = () => {
           <ul className="hidden items-center gap-10 md:flex">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <Link
-                  href={link.href}
-                  className="relative text-[13px] font-medium uppercase tracking-[0.18em] text-foreground/80 no-underline transition-all duration-300 hover:text-[#9A742F] dark:hover:text-[#C8A96B] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C8A96B] after:transition-all after:duration-300 hover:after:w-full"
-                >
+                <Link href={link.href} className="relative text-[13px] font-medium uppercase tracking-[0.18em] text-foreground/80 no-underline transition-all duration-300 hover:text-[#9A742F] dark:hover:text-[#C8A96B] after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-[#C8A96B] after:transition-all after:duration-300 hover:after:w-full">
                   {link.name}
                 </Link>
               </li>
@@ -72,88 +74,43 @@ const Navbar: React.FC = () => {
 
         <div className="flex items-center justify-end gap-3">
           <ThemeToggle />
+
           {user ? (
             <DropdownMenu>
-              <DropdownMenuTrigger
-                render={
-                  <button className="cursor-pointer rounded-full ring-2 ring-border transition-all duration-300 hover:ring-[#C8A96B] focus:outline-none">
-                    <Avatar className="h-10 w-10">
-                      <AvatarImage alt={user?.name ?? "User"} src={user?.image ?? undefined} />
-                      <AvatarFallback>{user?.name?.charAt(0) ?? "U"}</AvatarFallback>
-                    </Avatar>
-                  </button>
-
-                }
-              >
+              <DropdownMenuTrigger >
+                <Button variant="ghost" size="icon" className="rounded-full h-10 w-10">
+                  <Avatar>
+                    <AvatarImage alt={user?.name ?? "User"} src={user?.image ?? undefined} />
+                    <AvatarFallback>{user?.name?.charAt(0) ?? "U"}</AvatarFallback>
+                  </Avatar>
+                </Button>
               </DropdownMenuTrigger>
-
-              <DropdownMenuContent className="w-56 rounded-2xl border border-border bg-popover p-2 text-popover-foreground shadow-2xl backdrop-blur-2xl">
-                <DropdownMenuLabel className="font-normal">
-                  <div className="flex items-center gap-3 px-2 py-1.5">
-                    <Avatar className="h-8 w-8">
-                      <AvatarImage alt={user?.name ?? "User"} src={user?.image ?? undefined} />
-                      <AvatarFallback>{user?.name?.charAt(0) ?? "U"}</AvatarFallback>
-                    </Avatar>
-
-                    <div className="flex flex-col">
-                      <p className="text-sm font-medium leading-none text-foreground">{user?.name}</p>
-                      <p className="max-w-36 truncate text-xs text-muted-foreground">{user?.email}</p>
-                    </div>
-                  </div>
-                </DropdownMenuLabel>
-
-                <DropdownMenuSeparator className="bg-border" />
-
-                <DropdownMenuItem  className="cursor-pointer focus:bg-accent focus:text-accent-foreground"
-                render={
-                  <Link href="/mycars" className="w-full text-foreground">
-                    My Added Cars
-                  </Link>
-                }>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem  className="cursor-pointer focus:bg-accent focus:text-accent-foreground"
-                render={
-                  <Link href="/mybookings" className="w-full text-foreground">
-                    My Bookings
-                  </Link>
-                }>
-                </DropdownMenuItem>
-
-                <DropdownMenuItem className="cursor-pointer focus:bg-accent focus:text-accent-foreground">
-                  <div className="flex w-full items-center justify-between">
-                    <span>Settings</span>
-                    <Settings className="size-4 text-[#C8A96B]" />
-                  </div>
-                </DropdownMenuItem>
-
-                <DropdownMenuSeparator className="bg-white/10" />
-
-                <DropdownMenuItem
-                  onClick={handleSignOut}
-                  className="cursor-pointer focus:bg-red-500/10 text-red-400 focus:text-red-400"
-                >
-                  <div className="flex w-full items-center justify-between">
-                    <span>Log Out</span>
-                    <LogOut className="size-4 text-red-400" />
-                  </div>
-                </DropdownMenuItem>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuGroup>
+                  {dropDownLinks.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <DropdownMenuItem key={item.name}>
+                        <Link href={item.href} className="flex items-center gap-2 cursor-pointer">
+                          <Icon className="mr-2 h-4 w-4" />
+                          {item.name}
+                        </Link>
+                      </DropdownMenuItem>
+                    );
+                  })}
+                </DropdownMenuGroup>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onClick={handleSignOut} className="text-red-500"><LogOutIcon className="mr-2 h-4 w-4" /> Sign Out</DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex items-center gap-2 sm:gap-3">
-              <Button className="rounded-full bg-[#C8A96B] px-4 text-sm font-semibold text-black transition-all duration-300 hover:bg-[#C8A96B]/90 hover:scale-105 sm:px-6"
-                render={
-                  <Link href="/login">Login</Link>
-                }>
+            <div className="hidden items-center gap-2 md:flex sm:gap-3">
+              <Button asChild className="h-10 rounded-full bg-[#C8A96B] px-5 text-sm font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-[#C8A96B]/90">
+                <Link href="/login" className="flex items-center justify-center">Login</Link>
               </Button>
 
-              <Button  variant="outline"
-                className="hidden rounded-full border-border bg-transparent px-4 text-sm text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B] sm:block sm:px-6"
-              render={
-                <Link href="/register">Register</Link>
-              }
-              >
+              <Button asChild variant="outline" className="h-10 rounded-full border-border bg-transparent px-5 text-sm font-medium text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
+                <Link href="/register" className="flex items-center justify-center">Register</Link>
               </Button>
             </div>
           )}
@@ -163,30 +120,19 @@ const Navbar: React.FC = () => {
       {isOpen && (
         <div className="mt-3 flex flex-col gap-5 rounded-3xl border border-border bg-background/95 px-6 py-6 shadow-xl backdrop-blur-2xl md:hidden">
           {navLinks.map((link) => (
-            <Link  key={link.name}  href={link.href}  onClick={() => setIsOpen(false)}
-              className="text-sm uppercase tracking-[0.18em] text-foreground/80 no-underline transition-all duration-300 hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
+            <Link key={link.name} href={link.href} onClick={() => setIsOpen(false)} className="text-sm uppercase tracking-[0.18em] text-foreground/80 no-underline transition-all duration-300 hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
               {link.name}
             </Link>
           ))}
 
           {!user && (
-            <div className="flex flex-col gap-4 border-t border-border pt-5">
-              <Button
-                className="w-full rounded-full bg-[#C8A96B] py-6 font-semibold text-black hover:bg-[#C8A96B]/90"
-              render={
-                <Link href="/login" onClick={() => setIsOpen(false)}>
-                  Login
-                </Link>
-              }>
+            <div className="flex flex-col gap-3 border-t border-border pt-5">
+              <Button asChild className="h-11 w-full rounded-full bg-[#C8A96B] font-semibold text-black hover:bg-[#C8A96B]/90">
+                <Link href="/login" onClick={() => setIsOpen(false)}>Login</Link>
               </Button>
 
-              <Button variant="outline"
-                className="w-full rounded-full border-border bg-transparent py-6 text-foreground hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]"
-                render={
-                <Link href="/register" onClick={() => setIsOpen(false)}>
-                  Register
-                </Link>
-                }>
+              <Button asChild variant="outline" className="h-11 w-full rounded-full border-border bg-transparent text-foreground hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
+                <Link href="/register" onClick={() => setIsOpen(false)}>Register</Link>
               </Button>
             </div>
           )}

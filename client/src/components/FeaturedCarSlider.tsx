@@ -23,22 +23,16 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
       {/* Section Header */}
       <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
-          <Badge
-            variant="outline"
-            className="mb-4 border-[#C8A96B]/30 bg-[#C8A96B]/10 px-4 py-1.5 text-[12px] font-medium uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B]"
-          >
-            Our Premium Fleet
-          </Badge>
+          <p className="mb-4  py-1.5 text-[12px] font-medium uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B]">
+           Our Premium Fleet</p>
+          
           <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
             Featured Cars
           </h2>
         </div>
 
-        <Button
-          asChild
-          variant="link"
-          className="inline-flex items-center gap-3 p-0 text-sm font-semibold uppercase tracking-[0.2em] text-[#8A672A] transition-all duration-300 hover:translate-x-1 hover:no-underline dark:text-[#C8A96B]"
-        >
+        <Button  asChild  variant="link"
+          className="inline-flex items-center gap-3 p-0 text-sm font-semibold uppercase tracking-[0.2em] text-[#8A672A] transition-all duration-300 hover:translate-x-1 hover:no-underline dark:text-[#C8A96B]">
           <Link href="/explore-cars">
             View All Cars
             <ArrowRight />

@@ -73,7 +73,7 @@ const SearchComponent = () => {
                         </Label>
 
                         <Select value={searchParams.get('t') || ""} onValueChange={(value) => updateParams('t', value)}>
-                            <SelectTrigger className="flex h-17 w-full items-center justify-between rounded-2xl border border-border bg-background px-5 text-left text-base font-medium text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 focus:border-[#C8A96B] focus:ring-0 focus:ring-offset-0 data-[placeholder]:text-muted-foreground">
+                            <SelectTrigger className="flex h-17! w-full items-center justify-between rounded-2xl border border-border bg-background px-5 text-left text-base font-medium text-foreground transition-all duration-300 hover:border-[#C8A96B]/40 focus:border-[#C8A96B] focus:ring-0 focus:ring-offset-0 data-[placeholder]:text-muted-foreground">
                                 <SelectValue placeholder="Select car type" />
                             </SelectTrigger>
 

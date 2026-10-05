@@ -130,9 +130,7 @@ const AddCarPage = () => {
                 Car Name
               </Label>
 
-              <Input
-                {...register("carName", { required: true })}
-                placeholder="e.g. Mercedes Maybach S680"
+              <Input  {...register("carName", { required: true })}  placeholder="e.g. Mercedes Maybach S680"
                 className="h-16 rounded-2xl border border-input bg-background px-5 text-foreground placeholder:text-muted-foreground"
               />
             </div>
@@ -142,10 +140,7 @@ const AddCarPage = () => {
                 Daily Rent Price
               </Label>
 
-              <Input
-                {...register("dailyRentPrice", { required: true })}
-                type="number"
-                placeholder="e.g. 450"
+              <Input  {...register("dailyRentPrice", { required: true })}  type="number"  placeholder="e.g. 450"
                 className="h-16 rounded-2xl border border-input bg-background px-5 text-foreground placeholder:text-muted-foreground"
               />
             </div>
@@ -155,13 +150,9 @@ const AddCarPage = () => {
                 Car Type
               </Label>
 
-              <Controller
-                name="carType"
-                control={control}
-                rules={{ required: true }}
-                render={({ field }) => (
+              <Controller  name="carType"  control={control}  rules={{ required: true }} render={({ field }) => (
                   <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="h-16 w-full rounded-2xl border border-input bg-background px-5 text-foreground">
+                    <SelectTrigger className="h-16! w-full rounded-2xl border border-input bg-background px-5 text-foreground">
                       <SelectValue placeholder="Select car type" />
                     </SelectTrigger>
 
