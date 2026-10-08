@@ -10,13 +10,13 @@ import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { createBooking } from "@/services/api";
 import { BookCarCardProps, BookingFormValues, BookingPayload } from "@/types/booking";
-import {  Dialog,  DialogContent,  DialogTrigger,  DialogClose,} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogClose, } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Calendar } from "@/components/ui/calendar";
-import {  Popover,  PopoverContent,  PopoverTrigger,} from "@/components/ui/popover";
+import { Popover, PopoverContent, PopoverTrigger, } from "@/components/ui/popover";
 
 const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
   const { data: session } = authClient.useSession();
@@ -75,20 +75,14 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
     onChange: (value: string | null) => void,
   ) => (
     <Popover>
-      <PopoverTrigger asChild>
-        <Button
-          type="button"
-          variant="outline"
-          className="h-15 w-full justify-start rounded-2xl border border-border bg-background px-5 text-left font-normal text-foreground hover:bg-muted hover:text-foreground"
-        >
+      <PopoverTrigger render={
+        <Button type="button" variant="outline" className="h-15 w-full justify-start rounded-2xl border border-border bg-background px-5 text-left font-normal text-foreground hover:bg-muted hover:text-foreground" >
           {value || "Select date"}
-        </Button>
+        </Button>}>
       </PopoverTrigger>
 
       <PopoverContent className="w-auto border-border bg-popover p-0">
-        <Calendar
-          mode="single"
-          selected={value ? new Date(value) : undefined}
+        <Calendar mode="single" selected={value ? new Date(value) : undefined}
           onSelect={(date) =>
             onChange(date ? date.toISOString().split("T")[0] : null)
           }
@@ -99,10 +93,10 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
+      <DialogTrigger render={
         <Button className="h-15 w-full rounded-2xl border border-[#b89b65]/30 bg-[#b89b65] px-6 text-sm font-black uppercase tracking-[3px] text-black transition-all duration-300 hover:scale-[1.01] hover:bg-[#d2b578] active:scale-[0.99]">
           Book This Vehicle
-        </Button>
+        </Button>}>
       </DialogTrigger>
 
       <DialogContent className="max-h-[90vh] overflow-y-auto rounded-[34px] border border-border bg-card p-0 text-foreground shadow-xl sm:max-w-3xl">
@@ -207,14 +201,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                     </div>
                   </div>
 
-                  <Controller
-                    control={control}
-                    name="endDate"
-                    rules={{ required: true }}
-                    render={({ field }) =>
-                      datePicker(field.value, field.onChange)
-                    }
-                  />
+                  <Controller control={control} name="endDate" rules={{ required: true }} render={({ field }) => datePicker(field.value, field.onChange)} />
                 </div>
               </div>
 
@@ -239,27 +226,16 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
 
                   <div className="flex gap-4">
                     {["yes", "no"].map((option) => (
-                      <label
-                        key={option}
-                        className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-5 py-4 transition-all duration-300 ${
-                          driverOption === option
-                            ? "border-[#b89b65]/20 bg-[#b89b65]/10 text-[#d6bb84]"
-                            : "border-border bg-background text-foreground"
-                        }`}
-                      >
-                        <input
-                          type="radio"
-                          value={option}
-                          {...register("driverNeeded")}
-                          className="hidden"
-                        />
-                        <div
-                          className={`h-4 w-4 rounded-full border ${
-                            driverOption === option
-                              ? "border-[#d6bb84] bg-[#d6bb84]"
-                              : "border-gray-500"
-                          }`}
-                        />
+                      <label key={option} className={`flex cursor-pointer items-center gap-3 rounded-2xl border px-5 py-4 transition-all duration-300 
+                        ${driverOption === option
+                          ? "border-[#b89b65]/20 bg-[#b89b65]/10 text-[#d6bb84]"
+                          : "border-border bg-background text-foreground"
+                        }`}>
+                        <input type="radio" value={option} {...register("driverNeeded")} className="hidden" />
+                        <div className={`h-4 w-4 rounded-full border ${driverOption === option
+                          ? "border-[#d6bb84] bg-[#d6bb84]"
+                          : "border-gray-500"
+                          }`} />
                         <span className="text-sm font-bold uppercase tracking-[2px]">
                           {option}
                         </span>
@@ -281,21 +257,14 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
               </div>
 
               <div className="flex flex-col gap-4 border-t border-border pt-7 sm:flex-row sm:justify-end">
-                <DialogClose asChild>
-                  <Button
-                    type="button"
-                    variant="outline"
-                    className="h-14 rounded-2xl border border-border bg-background px-7 text-xs font-bold uppercase tracking-[3px] text-foreground hover:bg-muted hover:text-foreground"
-                  >
+                <DialogClose render={
+                  <Button type="button" variant="outline" className="h-14 rounded-2xl border border-border bg-background px-7 text-xs font-bold uppercase tracking-[3px] text-foreground hover:bg-muted hover:text-foreground">
                     Cancel
                   </Button>
+                }>
                 </DialogClose>
 
-                <Button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="h-14 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-8 text-xs font-bold uppercase tracking-[3px] text-[#8A672A] hover:bg-[#b89b65]/20 dark:text-[#d6bb84] disabled:opacity-50"
-                >
+                <Button type="submit" disabled={isSubmitting} className="h-14 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-8 text-xs font-bold uppercase tracking-[3px] text-[#8A672A] hover:bg-[#b89b65]/20 dark:text-[#d6bb84] disabled:opacity-50">
                   <HiOutlineSparkles size={18} />
                   <span>
                     {isSubmitting ? "Submitting..." : "Confirm Booking"}

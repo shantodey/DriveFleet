@@ -39,10 +39,9 @@ export const getCars = async (q?: string, t?: string): Promise<Car[]> => {
   }
 };
 
-export const getCarById = async (id: string, token?: string) => {
+export const getCarById = async (id: string) => {
   try {
     const res = await fetch(`${getBaseUrl()}/cars/${id}`, {
-      headers: getJsonHeaders(token),
       cache: "no-store",
     });
     if (!res.ok) {

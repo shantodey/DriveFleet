@@ -2,80 +2,68 @@
 
 import { useState } from "react";
 import { useForm, Controller } from "react-hook-form";
-import { redirect } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { CarFront, Sparkles } from "lucide-react";
-
 import { authClient } from "@/lib/auth-client";
 import { createCar } from "@/services/api";
 import { AddCarFormValues, CreateCarPayload } from "@/types/car";
-
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 
 const AddCarPage = () => {
-  const [isAvailable, setIsAvailable] = useState(true);
+  const router = useRouter();
+const [isAvailable, setIsAvailable] = useState(true);
 
-  const { data: session } = authClient.useSession();
-  const user = session?.user;
+const { data: session } = authClient.useSession();
+const user = session?.user;
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { isSubmitting },
-  } = useForm<AddCarFormValues>({
-    defaultValues: {
-      carName: "",
-      dailyRentPrice: "",
-      carType: "",
-      seatCapacity: "",
-      pickupLocation: "",
-      imageUrl: "",
-      description: "",
-    },
-  });
+const { register, handleSubmit, control, formState: { isSubmitting },} = useForm<AddCarFormValues>({
+  defaultValues: {
+    carName: "",
+    dailyRentPrice: "",
+    carType: "",
+    seatCapacity: "",
+    pickupLocation: "",
+    imageUrl: "",
+    description: "",
+  },
+});
 
-  const onSubmit = async (data: AddCarFormValues) => {
-    if (!user) {
-      toast.error("Please log in before adding a car.");
-      return;
-    }
+const onSubmit = async (data: AddCarFormValues) => {
+  if (!user) {
+    toast.error("Please log in before adding a car.");
+    return;
+  }
 
-    const carData: CreateCarPayload = {
-      carName: data.carName,
-      dailyRentPrice: Number(data.dailyRentPrice),
-      carType: data.carType,
-      seatCapacity: Number(data.seatCapacity),
-      pickupLocation: data.pickupLocation,
-      imageUrl: data.imageUrl,
-      description: data.description,
-      availabilityStatus: isAvailable ? "Available" : "Unavailable",
-      ownerId: user.id,
-      ownerName: user.name,
-      ownerEmail: user.email,
-    };
-
-    try {
-      const result = await createCar(carData);
-
-      toast.success(result.message || "Success");
-      redirect("/");
-    } catch (error) {
-      toast.error(
-        error instanceof Error ? error.message : "Something went wrong",
-      );
-    }
+  const carData: CreateCarPayload = {
+    carName: data.carName,
+    dailyRentPrice: Number(data.dailyRentPrice),
+    carType: data.carType,
+    seatCapacity: Number(data.seatCapacity),
+    pickupLocation: data.pickupLocation,
+    imageUrl: data.imageUrl,
+    description: data.description,
+    availabilityStatus: isAvailable ? "Available" : "Unavailable",
+    ownerId: user.id,
+    ownerName: user.name,
+    ownerEmail: user.email,
   };
+
+  try {
+    const result = await createCar(carData);
+
+    toast.success(result.message || "Success");
+    router.push("/explore-cars");
+  } catch (error) {
+    toast.error(
+      error instanceof Error ? error.message : "Something went wrong"
+    );
+  }
+};
 
   if (!user) {
     return (

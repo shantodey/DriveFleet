@@ -16,28 +16,22 @@ interface ViewCarsPageProps {
 
 const ViewCarsPage = async ({ params }: ViewCarsPageProps) => {
 
-    const { id } = await params;
+const { id } = await params;
 
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
+// Public fetch - no auth/token needed
+const response = await getCarById(id);
+const car = response?.data || response;
 
-    const token = session?.session?.token;
-
-    const response = await getCarById(id, token);
-    const car = response?.data || response;
-
-    console.log(car);
-    const {
-        carName = "Unknown Car",
-        imageUrl = "/placeholder.jpg",
-        carType = "Standard",
-        description = "No description available.",
-        seatCapacity = 0,
-        availabilityStatus = "Unavailable",
-        dailyRentPrice = 0,
-        pickupLocation = "N/A",
-    } = car;
+const {
+  carName = "Unknown Car",
+  imageUrl = "/placeholder.jpg",
+  carType = "Standard",
+  description = "No description available.",
+  seatCapacity = 0,
+  availabilityStatus = "Unavailable",
+  dailyRentPrice = 0,
+  pickupLocation = "N/A",
+} = car;
 
     return (
         <section className="min-h-screen bg-background text-foreground">
