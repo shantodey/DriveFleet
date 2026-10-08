@@ -5,6 +5,6 @@ import { createCar, listCars, getCarById } from "../controllers/car.controller.j
 const router = Router();
 router.post("/", createCar);
 router.get("/", listCars);
-router.get("/:id", verifyToken, getCarById);   
+router.get("/:id", getCarById);   
 
 export default router;

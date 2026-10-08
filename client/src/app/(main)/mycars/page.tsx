@@ -1,17 +1,17 @@
-import { auth } from "@/lib/auth";
-import { headers } from "next/headers";
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Users, ArrowRight } from "lucide-react";
-
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-
 import Nothing from "@/assets/NothingToShow.png";
 import EditMyCarDetels from "@/components/EditMyCarDetels";
-import DeleteMyAddCar from "@/components/DeleteMyAddCar";
-
+import DeleteMyAddCar, { AlertDialogDestructive } from "@/components/DeleteMyAddCar";
+import { useEffect, useState } from "react";
+import { authClient } from "@/lib/auth-client";
+import { getMyCarsByUserId } from "@/services/my_cars";
+import { Spinner } from "@/components/ui/spinner"
 interface MyCar {
   _id: string;
   carName: string;
@@ -23,23 +23,39 @@ interface MyCar {
   availabilityStatus: string;
 }
 
-const MyAddedCars = async () => {
-  const session = await auth.api.getSession({
-    headers: await headers(),
-  });
+const MyAddedCars = () => {
+  const [myCars, setMyCars] = useState<MyCar[]>([]);
+  const [loading, setLoading] = useState(true);
+  const { data: session, isPending } = authClient.useSession();
 
-  const user = session?.user;
+  useEffect(() => {
+    const fetchUserCars = async () => {
+      if (session?.user?.id) {
+        const cars: MyCar[] = await getMyCarsByUserId(session.user.id);
+        setMyCars(cars);
+      }
+      setLoading(false);
+    };
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/my-added-cars/${user?.id}`, {
-    cache: "no-store",
-  });
+    if (!isPending) {
+      fetchUserCars();
+    }
+  }, [session, isPending]);
 
-  const myCars: MyCar[] = await res.json();
+  if (isPending || loading)
+    return
+  <div className="flex justify-center items-center h-full gap-4">
+    <Button disabled size="sm">
+      <Spinner data-icon="inline-start" />
+      Loading...
+    </Button>
+  </div>
+    ;
 
   return (
     <section className="min-h-screen bg-background py-8 text-foreground md:py-12">
       <div className="container mx-auto max-w-7xl px-4 md:px-6">
-        
+
         {/* Page Header */}
         <div className="mb-8 flex flex-col justify-between gap-4 border-b pb-6 sm:flex-row sm:items-end">
           <div>
@@ -78,7 +94,7 @@ const MyAddedCars = async () => {
             {myCars.map((car) => (
               <Card key={car._id} className="overflow-hidden border p-0 gap-0">
                 <div className="grid grid-cols-1 lg:grid-cols-12">
-                  
+
                   {/* Image Container - Top space completely removed */}
                   <div className="relative aspect-video w-full lg:aspect-auto lg:h-full lg:col-span-4">
                     <Image src={car.imageUrl} alt={car.carName} fill sizes="(max-width: 1024px) 100vw, 33vw" className="object-cover" />
@@ -97,12 +113,12 @@ const MyAddedCars = async () => {
                         </div>
 
                         <div className="flex items-center gap-2">
-                          <Card className="px-4 py-2 bg-muted/50 border-none shadow-none">
+                          <Card className="px-4 py-2 bg-muted/50 border-none shadow-none ">
                             <span className="text-xs text-muted-foreground block">Daily Rent</span>
                             <span className="text-xl font-bold">${car.dailyRentPrice}</span>
                             <span className="text-xs text-muted-foreground">/day</span>
                           </Card>
-                          <DeleteMyAddCar car={car} />
+                          <AlertDialogDestructive  car={car}/>
                         </div>
                       </div>
 
