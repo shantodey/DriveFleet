@@ -63,3 +63,22 @@ export const updateCarById = async (id: string, updatedCar: Record<string, unkno
     return { ok: false, data: null };
   }
 };
+
+
+export const getBookedCarsByUserId = async (userId: string) => {
+  try {
+    const res = await fetch(`${getBaseUrl()}/booking/${userId}`, {
+      cache: "no-store",
+    });
+
+    if (!res.ok) {
+      console.error("getBookedCarsByUserId failed:", res.status);
+      return [];
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Error fetching booked cars:", error);
+    return [];
+  }
+};

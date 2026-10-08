@@ -24,20 +24,17 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
       <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <p className="mb-4  py-1.5 text-[12px] font-medium uppercase tracking-[0.35em] text-[#8A672A] dark:text-[#C8A96B]">
-           Our Premium Fleet</p>
-          
+            Our Premium Fleet</p>
+
           <h2 className="text-4xl font-black tracking-tight text-foreground sm:text-5xl">
             Featured Cars
           </h2>
         </div>
 
-        <Button  asChild  variant="link"
-          className="inline-flex items-center gap-3 p-0 text-sm font-semibold uppercase tracking-[0.2em] text-[#8A672A] transition-all duration-300 hover:translate-x-1 hover:no-underline dark:text-[#C8A96B]">
-          <Link href="/explore-cars">
-            View All Cars
-            <ArrowRight />
-          </Link>
-        </Button>
+        <Button variant="link" className="inline-flex items-center gap-3 p-0 text-sm font-semibold uppercase tracking-[0.2em] text-[#8A672A] transition-all duration-300 hover:translate-x-1 hover:no-underline dark:text-[#C8A96B]"
+          render={
+            <Link href="/explore-cars"> View All Cars <ArrowRight /> </Link>
+          }  ></Button>
       </div>
 
       {/* Car Swiper */}
@@ -102,13 +99,10 @@ const FeaturedCarSlider = ({ cars }: FeaturedCarSliderProps) => {
                     <p className="text-sm text-white/40">per day</p>
                   </div>
 
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="rounded-full border-border bg-transparent px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-[#C8A96B] hover:text-black"
-                  >
-                    <Link href={`/cars/${car._id}`}>Rent Now</Link>
-                  </Button>
+                  <Button variant="outline" className="rounded-full border-border bg-transparent px-5 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-[#C8A96B] hover:text-black"
+                    render={
+                      <Link href={`/cars/${car._id}`}>Rent Now</Link>
+                    }></Button>
                 </div>
               </CardContent>
             </Card>

@@ -105,13 +105,16 @@ const Navbar: React.FC = () => {
             </DropdownMenu>
           ) : (
             <div className="hidden items-center gap-2 md:flex sm:gap-3">
-              <Button asChild className="h-10 rounded-full bg-[#C8A96B] px-5 text-sm font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-[#C8A96B]/90">
-                <Link href="/login" className="flex items-center justify-center">Login</Link>
-              </Button>
+              <Button className="h-10 rounded-full bg-[#C8A96B] px-5 text-sm font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-[#C8A96B]/90"
+                render={
+                  <Link href="/login" className="flex items-center justify-center">Login</Link>
+                }> </Button>
 
-              <Button asChild variant="outline" className="h-10 rounded-full border-border bg-transparent px-5 text-sm font-medium text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
-                <Link href="/register" className="flex items-center justify-center">Register</Link>
-              </Button>
+              <Button variant="outline" className="h-10 rounded-full border-border bg-transparent px-5 text-sm font-medium text-foreground transition-all duration-300 hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]"
+                render={
+                  <Link href="/register" className="flex items-center justify-center">Register</Link>
+
+                }></Button>
             </div>
           )}
         </div>
@@ -127,12 +130,17 @@ const Navbar: React.FC = () => {
 
           {!user && (
             <div className="flex flex-col gap-3 border-t border-border pt-5">
-              <Button asChild className="h-11 w-full rounded-full bg-[#C8A96B] font-semibold text-black hover:bg-[#C8A96B]/90">
-                <Link href="/login" onClick={() => setIsOpen(false)}>Login</Link>
+              <Button className="h-11 w-full rounded-full bg-[#C8A96B] font-semibold text-black hover:bg-[#C8A96B]/90"
+                render={
+                  <Link href="/login" onClick={() => setIsOpen(false)}>Login</Link>
+
+                }>
               </Button>
 
-              <Button asChild variant="outline" className="h-11 w-full rounded-full border-border bg-transparent text-foreground hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]">
-                <Link href="/register" onClick={() => setIsOpen(false)}>Register</Link>
+              <Button variant="outline" className="h-11 w-full rounded-full border-border bg-transparent text-foreground hover:border-[#C8A96B] hover:bg-transparent hover:text-[#9A742F] dark:hover:text-[#C8A96B]"
+                render={
+                  <Link href="/register" onClick={() => setIsOpen(false)}>Register</Link>
+                }>
               </Button>
             </div>
           )}

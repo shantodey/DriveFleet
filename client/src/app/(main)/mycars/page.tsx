@@ -1,4 +1,5 @@
 "use client"
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Users, ArrowRight } from "lucide-react";
@@ -7,8 +8,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import Nothing from "@/assets/NothingToShow.png";
 import EditMyCarDetels from "@/components/EditMyCarDetels";
-import DeleteMyAddCar, { AlertDialogDestructive } from "@/components/DeleteMyAddCar";
-import { useEffect, useState } from "react";
+import { AlertDialogDestructive } from "@/components/DeleteMyAddCar";
 import { authClient } from "@/lib/auth-client";
 import { getMyCarsByUserId } from "@/services/my_cars";
 import { Spinner } from "@/components/ui/spinner"
@@ -79,12 +79,13 @@ const MyAddedCars = () => {
 
             <CardHeader className="p-0 pt-6">
               <CardTitle className="text-2xl font-bold">Nothing To Show</CardTitle>
-              <CardDescription className="mt-2 max-w-sm text-sm">You haven't added any luxury cars to your collection yet.</CardDescription>
+              <CardDescription className="mt-2 max-w-sm text-sm">You haven&apos;t added any luxury cars to your collection yet.</CardDescription>
             </CardHeader>
 
             <CardContent className="p-0 pt-6">
-              <Button asChild>
+              <Button render={
                 <Link href="/add-car">Add Your First Car</Link>
+              }>
               </Button>
             </CardContent>
           </Card>
@@ -118,7 +119,7 @@ const MyAddedCars = () => {
                             <span className="text-xl font-bold">${car.dailyRentPrice}</span>
                             <span className="text-xs text-muted-foreground">/day</span>
                           </Card>
-                          <AlertDialogDestructive  car={car}/>
+                          <AlertDialogDestructive car={car} />
                         </div>
                       </div>
 
@@ -149,11 +150,13 @@ const MyAddedCars = () => {
                       <div className="flex items-center gap-3 w-full sm:w-auto">
                         <EditMyCarDetels car={car} />
 
-                        <Button asChild className="w-full sm:w-auto">
-                          <Link href={`/explore-cars/${car._id}`}>
-                            <span>View Details</span>
-                            <ArrowRight className="ml-2 h-4 w-4" />
-                          </Link>
+                        <Button className="w-full sm:w-auto"
+                          render={
+                            <Link href={`/explore-cars/${car._id}`}>
+                              <span>View Details</span>
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                          }>
                         </Button>
                       </div>
                     </CardFooter>

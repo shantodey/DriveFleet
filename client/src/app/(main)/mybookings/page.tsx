@@ -4,22 +4,16 @@ import Nothing from "@/assets/NothingToShow.png";
 import Link from "next/link";
 import Image from "next/image";
 import DeleteBookingCar from "@/components/DeleteBookingCar";
-import { Button } from "@heroui/react";
+import { buttonVariants } from "@/components/ui/button";
 import { Calendar, Users, ArrowRight } from "lucide-react";
+import { getBookedCarsByUserId } from "@/services/my_cars";
 
 const MyBookingsCarsPage = async () => {
     const session = await auth.api.getSession({
-        headers: await headers()
+        headers: await headers(),
     });
-
     const user = session?.user;
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_SERVER_URL}/booking/${user?.id}`, {
-        cache: 'no-store'
-    });
-
-    const bookiingCarData = await res.json();
-
+    const bookiingCarData = user?.id ? await getBookedCarsByUserId(user.id) : [];
     const safeData = Array.isArray(bookiingCarData) ? bookiingCarData : [];
 
     return (
@@ -27,8 +21,8 @@ const MyBookingsCarsPage = async () => {
             <div className="container mx-auto max-w-7xl px-4 md:px-6">
                 <div className="mb-12 flex flex-col justify-between gap-6 border-b border-border pb-8 md:flex-row md:items-end">
                     <div>
-                        <p className="text-xs uppercase tracking-[5px] text-[#8A672A] dark:text-[#b89b65]">   Premium Reservations</p>
-                        <h1 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">   My Bookings</h1>
+                        <p className="text-xs uppercase tracking-[5px] text-[#8A672A] dark:text-[#b89b65]">  Premium Reservations </p>
+                        <h1 className="mt-3 text-4xl font-black tracking-tight md:text-5xl">    My Bookings </h1>
                         <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">  Track all your luxury vehicle reservations and booking schedules in one place.</p>
                     </div>
 
@@ -36,54 +30,31 @@ const MyBookingsCarsPage = async () => {
                         <p className="text-xs uppercase tracking-[4px] text-muted-foreground">  Total Reservations </p>
                         <h2 className="mt-2 text-3xl font-black text-foreground">  {safeData.length} </h2>
                     </div>
-
                 </div>
 
                 {safeData.length === 0 ? (
-
                     <div className="flex flex-col items-center justify-center rounded-[32px] border border-border bg-card px-6 py-20 text-center">
-
-                        <div className="relative aspect-square w-full max-w-[260px]">
+                        <div className="relative aspect-square w-full max-w-65">
                             <Image src={Nothing} alt="No items found" fill priority sizes="(max-width:768px) 100vw, 300px" className="object-contain opacity-90" />
                         </div>
 
                         <h2 className="mt-8 text-3xl font-black text-foreground">  No Bookings Yet </h2>
 
                         <p className="mt-4 max-w-md text-sm leading-7 text-muted-foreground">
-                            You haven't reserved any premium vehicles yet. Explore our luxury collection and make your first booking.
+                            You  haven&apos;t reserved any premium vehicles yet. Explore our luxury collection and make your first booking.
                         </p>
 
-                        <Link href="/explore-cars">
-
-                            <Button className="mt-8 h-13 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-8 text-sm font-bold uppercase tracking-[3px] text-[#8A672A] transition-all duration-300 hover:bg-[#b89b65]/20 dark:text-[#d6bb84]">
-                                Explore Cars
-                            </Button>
-
+                        <Link href="/explore-cars" className={buttonVariants({ className: "mt-8 h-13 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-8 text-sm font-bold uppercase tracking-[3px] text-[#8A672A] transition-all duration-300 hover:bg-[#b89b65]/20 dark:text-[#d6bb84]" })}>
+                            Explore Cars
                         </Link>
-
                     </div>
-
                 ) : (
-
                     <div className="grid grid-cols-1 gap-8">
-
                         {safeData.map((booking) => (
-
                             <div key={booking._id} className="group overflow-hidden rounded-[32px] border border-border bg-card transition-all duration-500 hover:border-[#C8A96B]/40 hover:shadow-lg">
-
                                 <div className="grid grid-cols-1 lg:grid-cols-12">
-
-                                    <div className="relative h-[280px] overflow-hidden lg:col-span-5">
-
-                                        <Image
-                                            alt={booking?.carName}
-                                            src={booking?.carImg}
-                                            fill
-                                            sizes="(max-width:1024px) 100vw, 40vw"
-                                            className="object-cover transition-transform duration-700 group-hover:scale-105"
-                                            loading="lazy"
-                                        />
-
+                                    <div className="relative h-70 overflow-hidden lg:col-span-5">
+                                        <Image alt={booking?.carName} src={booking?.carImg} fill sizes="(max-width:1024px) 100vw, 40vw" className="object-cover transition-transform duration-700 group-hover:scale-105" />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
 
                                         <div className="absolute left-5 top-5 rounded-full border border-[#b89b65]/15 bg-black/30 px-4 py-2 backdrop-blur-md">
@@ -91,29 +62,17 @@ const MyBookingsCarsPage = async () => {
                                                 Reserved
                                             </p>
                                         </div>
-
                                     </div>
 
                                     <div className="flex flex-col justify-between p-6 lg:col-span-7 lg:p-8">
-
                                         <div>
-
                                             <div className="flex items-start justify-between gap-5">
-
                                                 <div>
-
-                                                    <p className="text-xs uppercase tracking-[5px] text-[#8A672A] dark:text-[#b89b65]">
-                                                        Luxury Booking
-                                                    </p>
-
-                                                    <h2 className="mt-3 text-3xl font-black text-foreground">
-                                                        {booking?.carName}
-                                                    </h2>
-
+                                                    <p className="text-xs uppercase tracking-[5px] text-[#8A672A] dark:text-[#b89b65]">Luxury Booking </p>
+                                                    <h2 className="mt-3 text-3xl font-black text-foreground">   {booking?.carName} </h2>
                                                 </div>
 
                                                 <DeleteBookingCar booking={booking} />
-
                                             </div>
 
                                             <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">
@@ -121,63 +80,40 @@ const MyBookingsCarsPage = async () => {
                                             </p>
 
                                             <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2">
-
                                                 <div className="flex items-center gap-4 rounded-2xl border border-border bg-background p-4">
-
                                                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-[#8A672A] dark:text-[#d6bb84]">
                                                         <Calendar size={20} />
                                                     </div>
 
                                                     <div>
-
-                                                        <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
-                                                            Booking Dates
-                                                        </p>
-
+                                                        <p className="text-xs uppercase tracking-[3px] text-muted-foreground">   Booking Dates </p>
                                                         <h3 className="mt-1 text-sm font-bold text-foreground">
                                                             {booking?.startDate} - {booking?.endDate}
                                                         </h3>
-
                                                     </div>
-
                                                 </div>
 
                                                 <div className="flex items-center gap-4 rounded-2xl border border-border bg-background p-4">
-
                                                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-[#8A672A] dark:text-[#d6bb84]">
                                                         <Users size={20} />
                                                     </div>
 
                                                     <div>
-
-                                                        <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
-                                                            Total Guests
-                                                        </p>
-
-                                                        <h3 className="mt-1 text-sm font-bold text-foreground">
-                                                            {booking?.people} People
-                                                        </h3>
-
+                                                        <p className="text-xs uppercase tracking-[3px] text-muted-foreground">  Total Guests </p>
+                                                        <h3 className="mt-1 text-sm font-bold text-foreground"> {booking?.people} People </h3>
                                                     </div>
-
                                                 </div>
-
                                             </div>
-
                                         </div>
 
                                         <div className="mt-8 flex flex-col gap-4 border-t border-border pt-6 sm:flex-row sm:items-center sm:justify-between">
-
                                             <p className="text-sm leading-7 text-muted-foreground">
                                                 Booking confirmation secured and protected for your selected rental schedule.
                                             </p>
 
-                                            <Link href={`explore-cars/${booking?.carId}`}>
-
-                                                <Button className="h-13 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-7 text-sm font-bold uppercase tracking-[3px] text-[#8A672A] transition-all duration-300 hover:bg-[#b89b65]/20 dark:text-[#d6bb84]">
-                                                    <span>    View Details</span>
-                                                    <ArrowRight size={18} />
-                                                </Button>
+                                            <Link href={`explore-cars/${booking?.carId}`} className={buttonVariants({ className: "h-13 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-7 text-sm font-bold uppercase tracking-[3px] text-[#8A672A] transition-all duration-300 hover:bg-[#b89b65]/20 dark:text-[#d6bb84]" })}>
+                                                <span>View Details</span>
+                                                <ArrowRight size={18} />
                                             </Link>
                                         </div>
                                     </div>
@@ -186,9 +122,7 @@ const MyBookingsCarsPage = async () => {
                         ))}
                     </div>
                 )}
-
             </div>
-
         </section>
     );
 };
