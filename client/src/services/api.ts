@@ -4,10 +4,10 @@ import { BookingPayload } from "@/types/booking";
 import { Car, CreateCarPayload } from "@/types/car";
 
 const getBaseUrl = () => {
-  const baseUrl = process.env.NEXT_PUBLIC_SERVER_URL;
+  const baseUrl = process.env.SERVER_URL;
 
   if (!baseUrl) {
-    throw new Error("NEXT_PUBLIC_SERVER_URL is not configured");
+    throw new Error("SERVER_URL is not configured");
   }
 
   return baseUrl.replace(/\/$/, "");
