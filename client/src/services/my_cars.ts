@@ -82,3 +82,26 @@ export const getBookedCarsByUserId = async (userId: string) => {
     return [];
   }
 };
+
+
+export const deleteBookingById = async (bookingId: string) => {
+  try {
+    const res = await fetch(`${getBaseUrl()}/booking/${bookingId}`, {
+      method: "DELETE",
+      headers: {
+        "content-type": "application/json",
+      },
+    });
+
+    if (!res.ok) {
+      console.error("deleteBookingById failed:", res.status);
+      return { ok: false, data: null };
+    }
+
+    const data = await res.json();
+    return { ok: true, data };
+  } catch (error) {
+    console.error("Error deleting booking:", error);
+    return { ok: false, data: null };
+  }
+};
