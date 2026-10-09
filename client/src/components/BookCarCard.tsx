@@ -2,10 +2,7 @@
 
 import React from "react";
 import { useForm, Controller } from "react-hook-form";
-import { BsEnvelopePaper } from "react-icons/bs";
-import { IoCalendarOutline } from "react-icons/io5";
-import { LuUsers } from "react-icons/lu";
-import { HiOutlineSparkles } from "react-icons/hi2";
+import { CalendarDays, MailOpen, Sparkles, Users } from "lucide-react";
 import toast from "react-hot-toast";
 import { authClient } from "@/lib/auth-client";
 import { createBooking } from "@/services/api";
@@ -104,7 +101,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
           <div className="flex items-start justify-between gap-5">
             <div className="flex items-center gap-5">
               <div className="flex h-18 w-18 items-center justify-center rounded-3xl border border-[#b89b65]/20 bg-[#b89b65]/10 text-[#8A672A] dark:text-[#d6bb84]">
-                <BsEnvelopePaper size={28} />
+                <MailOpen size={28} />
               </div>
 
               <div>
@@ -164,7 +161,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                 <div className="rounded-[28px] border border-border bg-card p-5">
                   <div className="mb-5 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/3 text-[#d6bb84]">
-                      <IoCalendarOutline size={20} />
+                      <CalendarDays size={20} />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
@@ -189,7 +186,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                 <div className="rounded-[28px] border border-border bg-card p-5">
                   <div className="mb-5 flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/3 text-[#d6bb84]">
-                      <IoCalendarOutline size={20} />
+                      <CalendarDays size={20} />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
@@ -209,7 +206,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                 <div className="flex flex-col justify-between gap-6 md:flex-row md:items-center">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-muted text-[#8A672A] dark:text-[#d6bb84]">
-                      <LuUsers size={20} />
+                      <Users size={20} />
                     </div>
                     <div>
                       <p className="text-xs uppercase tracking-[3px] text-muted-foreground">
@@ -265,7 +262,7 @@ const BookCarCard: React.FC<BookCarCardProps> = ({ car }) => {
                 </DialogClose>
 
                 <Button type="submit" disabled={isSubmitting} className="h-14 rounded-2xl border border-[#b89b65]/20 bg-[#b89b65]/10 px-8 text-xs font-bold uppercase tracking-[3px] text-[#8A672A] hover:bg-[#b89b65]/20 dark:text-[#d6bb84] disabled:opacity-50">
-                  <HiOutlineSparkles size={18} />
+                  <Sparkles size={18} />
                   <span>
                     {isSubmitting ? "Submitting..." : "Confirm Booking"}
                   </span>
