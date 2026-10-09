@@ -1,4 +1,4 @@
-import "dotenv/config";           // সবার আগে!
+import "dotenv/config";           
 import dns from "node:dns";
 import app from "./app.js";
 import { client } from "./config/db.js";
