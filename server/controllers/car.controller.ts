@@ -1,15 +1,21 @@
-import type { RequestHandler } from "express";
+import type { Request, RequestHandler, Response } from "express";
 import { ObjectId } from "mongodb";
 import { carsCollection } from "../config/db.js";
+import { addCarDataDchema } from "../config/add.car.js";
 
-export const createCar: RequestHandler = async (req, res, next) => {
-  try {
-    const result = await carsCollection.insertOne(req.body);
-    res.json(result);
-  } catch (error) { next(error); }
+export const createCar: RequestHandler = async (req:Request, res:Response, next) => {
+  const addCars=addCarDataDchema.safeParse(req.body)
+  if(addCars.success){
+    try {
+      const result = await carsCollection.insertOne(addCars.data);
+      res.json(result);
+    } catch (error) { next(error); }
+  }else{
+    res.status(400).send("the input was not valid")
+  }
 };
 
-export const listCars: RequestHandler = async (req, res, next) => {
+export const listCars: RequestHandler = async (req:Request, res:Response, next) => {
   try {
     const { q, t } = req.query;
     const filter: Record<string, unknown> = {};
@@ -20,7 +26,7 @@ export const listCars: RequestHandler = async (req, res, next) => {
   } catch (error) { next(error); }
 };
 
-export const getCarById: RequestHandler = async (req, res, next) => {
+export const getCarById: RequestHandler = async (req:Request, res:Response, next) => {
   try {
     const id = String(req.params.id);
     if (!ObjectId.isValid(id)) {

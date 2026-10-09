@@ -15,8 +15,8 @@ type EditMyCarDetelsProps = {
         _id?: string;
         availabilityStatus?: string;
         carName?: string;
-        dailyRentPrice?: number | string;
-        seatCapacity?: number | string;
+        dailyRentPrice?: number;
+        seatCapacity?: number;
         pickupLocation?: string;
         imageUrl?: string;
         description?: string;
@@ -26,9 +26,9 @@ type EditMyCarDetelsProps = {
 
 type FormValues = {
     carName: string;
-    dailyRentPrice: number | string;
+    dailyRentPrice: number;
     carType: string;
-    seatCapacity: number | string;
+    seatCapacity: number;
     pickupLocation: string;
     imageUrl: string;
     description: string;
@@ -39,9 +39,9 @@ const EditMyCarDetels = ({ car }: EditMyCarDetelsProps) => {
     const { register, handleSubmit, control, watch, formState: { errors, isSubmitting } } = useForm<FormValues>({
         defaultValues: {
             carName: car?.carName || "",
-            dailyRentPrice: car?.dailyRentPrice ?? "",
+            dailyRentPrice: car?.dailyRentPrice ?? 0,
             carType: car?.carType || "",
-            seatCapacity: car?.seatCapacity ?? "",
+            seatCapacity: car?.seatCapacity ?? 0,
             pickupLocation: car?.pickupLocation || "",
             imageUrl: car?.imageUrl || "",
             description: car?.description || "",
@@ -57,9 +57,11 @@ const EditMyCarDetels = ({ car }: EditMyCarDetelsProps) => {
             return;
         }
 
+        const { isAvailable, ...carData } = data;
+
         const updatedCar = {
-            ...data,
-            availabilityStatus: data.isAvailable ? "Available" : "Unavailable",
+            ...carData,
+            availabilityStatus: isAvailable ? "Available" : "Unavailable",
         };
 
         try {
@@ -75,7 +77,6 @@ const EditMyCarDetels = ({ car }: EditMyCarDetelsProps) => {
             toast.error("Something Went Wrong");
         }
     };
-
     return (
         <Dialog>
             <DialogTrigger render={
@@ -134,8 +135,7 @@ const EditMyCarDetels = ({ car }: EditMyCarDetelsProps) => {
                                     <FieldLabel htmlFor="dailyRentPrice" className="mb-3 text-xs uppercase tracking-[3px] text-muted-foreground">
                                         Daily Rent Price
                                     </FieldLabel>
-                                    <Input id="dailyRentPrice" type="number" placeholder="Enter Price" className="h-14 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground"
-                                        {...register("dailyRentPrice", { required: "Price is required" })} />
+                                    <Input id="dailyRentPrice" type="number" placeholder="Enter Price" className="h-14 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground" {...register("dailyRentPrice", { required: "Price is required", valueAsNumber: true })} />
                                     {errors.dailyRentPrice && <FieldError>{errors.dailyRentPrice.message}</FieldError>}
                                 </Field>
 
@@ -175,8 +175,7 @@ const EditMyCarDetels = ({ car }: EditMyCarDetelsProps) => {
                                         Seat Capacity
                                     </FieldLabel>
 
-                                    <Input id="seatCapacity" type="number" placeholder="Seat Capacity" className="h-14 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground"
-                                        {...register("seatCapacity", { required: "Seat capacity is required" })} />
+                                    <Input id="seatCapacity" type="number" placeholder="Seat Capacity" className="h-14 rounded-2xl border border-input bg-card px-5 text-foreground placeholder:text-muted-foreground" {...register("seatCapacity", { required: "Seat capacity is required", valueAsNumber: true })} />
                                     {errors.seatCapacity && <FieldError>{errors.seatCapacity.message}</FieldError>}
                                 </Field>
 

@@ -1,6 +1,7 @@
 import type { RequestHandler } from "express";
 import { ObjectId } from "mongodb";
 import { carsCollection } from "../config/db.js";
+import { updateCarInfoSchema } from "../config/update.car.js";
 
 export const getMyCars: RequestHandler = async (req, res, next) => {
   try {
@@ -17,9 +18,10 @@ export const updateMyCar: RequestHandler = async (req, res, next) => {
       res.status(400).json({ message: "Invalid car id" });
       return;
     }
+    const validatedData = updateCarInfoSchema.parse(req.body)
     const result = await carsCollection.updateOne(
       { _id: new ObjectId(id) },
-      { $set: req.body }
+      { $set: validatedData }
     );
     res.json(result);
   } catch (error) { next(error); }
