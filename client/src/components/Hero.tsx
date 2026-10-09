@@ -13,8 +13,8 @@ const Hero = () => {
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-background">
       <Image  src={heroimg}  alt="Luxury Car"  fill  priority  sizes="100vw"  className="object-cover object-center scale-105"/>
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-background/85 to-background/50 dark:from-black dark:via-black/70 dark:to-black/40" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-background to-transparent dark:from-[#0B0B0B]" />
+      <div className="absolute inset-0 bg-linear-to-r from-background via-background/85 to-background/50 dark:from-black dark:via-black/70 dark:to-black/40" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-linear-to-r from-background to-transparent dark:from-[#0B0B0B]" />
 
       {/* Main Content */}
       <div className="relative z-10 flex min-h-screen items-center px-6 sm:px-10 lg:px-20">
